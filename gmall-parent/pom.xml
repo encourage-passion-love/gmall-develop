@@ -10,6 +10,7 @@
         <version>2.4.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <!--测试一下git远程推送功能-->
 
     <properties>
         <java.version>8</java.version>
