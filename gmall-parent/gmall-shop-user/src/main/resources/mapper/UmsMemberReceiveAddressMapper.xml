@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfp.gmall.mapper.UmsMemberReceiveAddressMapper">
+
+    <select id="selectAllUserReceiverAddress" parameterType="long"
+            resultType="com.xfp.gmall.bean.UmsMemberReceiveAddress">
+        select umra.*  from ums_member_receive_address umra where umra.member_id=#{member_id}
+    </select>
+
+</mapper>
