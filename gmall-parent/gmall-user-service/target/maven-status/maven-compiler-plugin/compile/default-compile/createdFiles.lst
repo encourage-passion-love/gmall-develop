@@ -1,0 +1,4 @@
+com\xfp\gmall\user\GUserServiceApp.class
+com\xfp\gmall\user\mapper\UserMapper.class
+com\xfp\gmall\user\mapper\UmsMemberReceiveAddressMapper.class
+com\xfp\gmall\user\service\UmsMemberServiceImpl.class
