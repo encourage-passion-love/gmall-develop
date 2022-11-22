@@ -3,7 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xfp.gmall.manager.mapper.Catelog3Mapper">
+<select id="getCateLog3" parameterType="string"
+resultType="com.xfp.gmall.manager.bean.PmsBaseCatalog3">
+    select pc3.*  from pms_base_catalog3 pc3
+    where pc3.catalog2_id=#{catalog2_id}
 
+</select>
 
 
 </mapper>
