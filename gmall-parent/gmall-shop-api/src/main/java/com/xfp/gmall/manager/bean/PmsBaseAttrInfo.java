@@ -1,8 +1,9 @@
-package com.xfp.gmall.user.bean;
+package com.xfp.gmall.manager.bean;
 
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @param
@@ -20,8 +21,8 @@ public class PmsBaseAttrInfo implements Serializable {
     private String catalog3Id;
     @Column
     private String isEnabled;
-   /* @Transient
-    List<BaseAttrValue> attrValueList;*/
+    @Transient
+    List<PmsBaseAttrValue> attrValueList;
 
     public String getId() {
         return id;
@@ -55,11 +56,11 @@ public class PmsBaseAttrInfo implements Serializable {
         this.isEnabled = isEnabled;
     }
 
-//    public List<BaseAttrValue> getAttrValueList() {
-//        return attrValueList;
-//    }
+    public List<PmsBaseAttrValue> getAttrValueList() {
+        return attrValueList;
+    }
 
-//    public void setAttrValueList(List<BaseAttrValue> attrValueList) {
-//        this.attrValueList = attrValueList;
-//    }
+    public void setAttrValueList(List<PmsBaseAttrValue> attrValueList) {
+        this.attrValueList = attrValueList;
+    }
 }
