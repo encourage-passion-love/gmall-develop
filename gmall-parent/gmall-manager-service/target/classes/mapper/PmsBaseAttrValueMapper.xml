@@ -5,7 +5,12 @@
 <mapper namespace="com.xfp.gmall.manager.mapper.PmsBaseAttrValueMapper">
 
 
-
+    <insert id="saveAttrValues" parameterType="com.xfp.gmall.manager.bean.PmsBaseAttrValue">
+        insert into pms_base_attr_value(value_name, attr_id,is_enabled) values
+        <foreach collection="list" item="value" separator=",">
+            (#{value.valueName}, #{value.attrId},#{value.isEnabled})
+        </foreach>
+    </insert>
 
 
 </mapper>

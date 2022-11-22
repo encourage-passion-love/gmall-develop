@@ -11,5 +11,12 @@
     where pai.catalog3_id=#{catalog3Id}
 </select>
 
+    <insert id="saveAttrInfo"
+            parameterType="com.xfp.gmall.manager.bean.PmsBaseAttrInfo"
+            useGeneratedKeys="true" keyProperty="id">
+     insert into pms_base_attr_info(attr_name,catalog3_id,is_enabled)
+     values (#{attrName},#{catalog3Id},#{isEnabled})
+    </insert>
+
 
 </mapper>
