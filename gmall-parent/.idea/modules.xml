@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/gmall-manager-service/gmall-manager-service.iml" filepath="$PROJECT_DIR$/gmall-manager-service/gmall-manager-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gmall-manager-web/gmall-manager-web.iml" filepath="$PROJECT_DIR$/gmall-manager-web/gmall-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gmall-parent.iml" filepath="$PROJECT_DIR$/gmall-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gmall-shop-api/gmall-shop-api.iml" filepath="$PROJECT_DIR$/gmall-shop-api/gmall-shop-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gmall-shop-user/gmall-shop-user.iml" filepath="$PROJECT_DIR$/gmall-shop-user/gmall-shop-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gmall-user-service/gmall-user-service.iml" filepath="$PROJECT_DIR$/gmall-user-service/gmall-user-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gmall-user-web/gmall-user-web.iml" filepath="$PROJECT_DIR$/gmall-user-web/gmall-user-web.iml" />
+    </modules>
+  </component>
+</project>
