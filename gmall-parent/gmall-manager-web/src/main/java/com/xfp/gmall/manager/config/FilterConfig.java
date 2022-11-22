@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.ArrayList;
@@ -31,5 +32,11 @@ public class FilterConfig {
         corsConfiguration.setAllowedMethods(list);
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
+    }
+    @Bean
+    public CharacterEncodingFilter filterEncoding(){
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        return characterEncodingFilter;
     }
 }

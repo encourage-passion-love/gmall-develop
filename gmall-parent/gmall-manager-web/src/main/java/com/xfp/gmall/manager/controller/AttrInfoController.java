@@ -2,9 +2,7 @@ package com.xfp.gmall.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.xfp.gmall.manager.service.PmsAttrService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import com.xfp.gmall.manager.bean.PmsBaseAttrInfo;
@@ -18,6 +16,12 @@ public class AttrInfoController {
     public List<PmsBaseAttrInfo> attrInfoList(@RequestParam("catalog3Id") String catalog3Id){
         List<PmsBaseAttrInfo> pmsBaseAttrInfos = pmsAttrService.attrInfoList(catalog3Id);
         return pmsBaseAttrInfos;
+    }
+
+    @RequestMapping(value = "/saveAttrInfo",method = RequestMethod.POST)
+    public PmsBaseAttrInfo saveAttrInfo(@RequestBody PmsBaseAttrInfo pmsBaseAttrInfo){
+        pmsAttrService.saveAttrInfo(pmsBaseAttrInfo);
+        return pmsBaseAttrInfo;
     }
 
 
