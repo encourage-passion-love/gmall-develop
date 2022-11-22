@@ -1,9 +1,10 @@
-package com.xfp.gmall.user.bean;
+package com.xfp.gmall.manager.bean;
 
 
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @param
@@ -17,8 +18,8 @@ public class PmsBaseCatalog1 implements Serializable {
     @Column
     private String name;
 
-    /*@Transient
-    private List<BaseCatalog2> catalog2s;*/
+    @Transient
+    private List<PmsBaseCatalog2> catalog2s;
 
     public String getId() {
         return id;

@@ -1,0 +1,4 @@
+com\xfp\gmall\manager\config\FilterConfig.class
+com\xfp\gmall\manager\service\CatelogService.class
+com\xfp\gmall\manager\GMallManagerWebApp.class
+com\xfp\gmall\manager\controller\CatelogController.class
