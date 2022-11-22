@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.xfp.gmall.manager.mapper")
 public class GMallManagerServiceApp {
     public static void main(String[] args) {
-        //测试一下
+        //测试一下了
         SpringApplication.run(GMallManagerServiceApp.class,args);
     }
 }
