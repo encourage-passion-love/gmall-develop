@@ -1,6 +1,7 @@
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\manager\service\PmsAttrService.java
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\user\bean\PmsSkuAttrValue.java
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\user\bean\PmsSkuSaleAttrValue.java
+C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\manager\bean\PmsBaseSaleAttr.java
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\user\bean\OmsOrder.java
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\user\bean\PmsBrand.java
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\manager\bean\PmsBaseCatalog1.java
@@ -19,7 +20,6 @@ C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gma
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\manager\service\SpuService.java
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\manager\service\CatelogService.java
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\manager\bean\PmsProductImage.java
-C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\user\bean\PmsBaseSaleAttr.java
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\manager\bean\PmsBaseAttrInfo.java
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\manager\bean\PmsProductInfo.java
 C:\workspace\gmall-develop\gmall-parent\gmall-shop-api\src\main\java\com\xfp\gmall\manager\bean\PmsBaseCatalog3.java

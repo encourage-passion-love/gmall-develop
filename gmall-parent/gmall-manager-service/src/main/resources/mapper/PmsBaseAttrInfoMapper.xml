@@ -23,5 +23,9 @@
         is_enabled=#{isEnabled} where pms_base_attr_info.id=#{id}
     </update>
 
+    <select id="baseSaleAttrList" resultType="com.xfp.gmall.manager.bean.PmsBaseSaleAttr">
+        select paa.* from pms_base_sale_attr paa
+    </select>
+
 
 </mapper>

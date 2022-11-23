@@ -1,3 +1,4 @@
+com\xfp\gmall\manager\bean\PmsBaseSaleAttr.class
 com\xfp\gmall\user\bean\OmsOrder.class
 com\xfp\gmall\user\bean\UmsMemberReceiveAddress.class
 com\xfp\gmall\user\service\UserService.class
@@ -22,5 +23,4 @@ com\xfp\gmall\user\bean\PmsBrand.class
 com\xfp\gmall\manager\bean\PmsProductInfo.class
 com\xfp\gmall\manager\bean\PmsProductSaleAttrValue.class
 com\xfp\gmall\manager\bean\PmsBaseCatalog2.class
-com\xfp\gmall\user\bean\PmsBaseSaleAttr.class
 com\xfp\gmall\user\bean\PmsSkuImage.class

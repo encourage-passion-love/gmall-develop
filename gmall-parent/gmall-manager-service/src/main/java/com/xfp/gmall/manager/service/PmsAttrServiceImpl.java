@@ -3,6 +3,7 @@ package com.xfp.gmall.manager.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.xfp.gmall.manager.bean.PmsBaseAttrInfo;
 import com.xfp.gmall.manager.bean.PmsBaseAttrValue;
+import com.xfp.gmall.manager.bean.PmsBaseSaleAttr;
 import com.xfp.gmall.manager.mapper.PmsBaseAttrInfoMapper;
 import com.xfp.gmall.manager.mapper.PmsBaseAttrValueMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +71,11 @@ public class PmsAttrServiceImpl implements PmsAttrService{
     @Override
     public void deleteAttrValueByAttrId(String attrId) {
         attrValueMapper.deleteAttrValueByAttrId(attrId);
+    }
+
+    @Override
+    public List<PmsBaseSaleAttr> baseSaleAttrList() {
+        List<PmsBaseSaleAttr> pmsBaseSaleAttrs = attrInfoMapper.baseSaleAttrList();
+        return pmsBaseSaleAttrs;
     }
 }
