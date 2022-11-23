@@ -1,4 +1,6 @@
 com\xfp\gmall\manager\GMallManagerServiceApp.class
+com\xfp\gmall\manager\mapper\SpuMapper.class
+com\xfp\gmall\manager\service\SpuServiceImpl.class
 com\xfp\gmall\manager\mapper\PmsBaseAttrValueMapper.class
 com\xfp\gmall\manager\service\PmsAttrServiceImpl.class
 com\xfp\gmall\manager\mapper\PmsBaseAttrInfoMapper.class
