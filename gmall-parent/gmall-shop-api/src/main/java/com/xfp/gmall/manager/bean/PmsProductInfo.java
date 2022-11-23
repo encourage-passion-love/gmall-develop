@@ -1,4 +1,4 @@
-package com.xfp.gmall.user.bean;
+package com.xfp.gmall.manager.bean;
 
 
 
