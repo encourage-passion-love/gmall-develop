@@ -8,4 +8,5 @@ import java.util.List;
 public interface PmsBaseAttrInfoMapper {
     public Long saveAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo);
     public List<PmsBaseAttrInfo> attrInfoList(@Param("catalog3Id") String catalog3Id);
+    public void updateAttrInfoById(PmsBaseAttrInfo pmsBaseAttrInfo);
 }

@@ -27,22 +27,48 @@ public class PmsAttrServiceImpl implements PmsAttrService{
 
     @Override
     public void saveAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo) {
-        List<PmsBaseAttrValue> saveAttrValues=new ArrayList<>();
-        pmsBaseAttrInfo.setIsEnabled("1");
-        attrInfoMapper.saveAttrInfo(pmsBaseAttrInfo);
-        String attrInfoId=pmsBaseAttrInfo.getId();
-        List<PmsBaseAttrValue> attrValueList = pmsBaseAttrInfo.getAttrValueList();
-        for (PmsBaseAttrValue pmsBaseAttrValue : attrValueList) {
-            pmsBaseAttrValue.setAttrId(String.valueOf(attrInfoId));
-            pmsBaseAttrValue.setIsEnabled("1");
-            saveAttrValues.add(pmsBaseAttrValue);
-        }
-        attrValueMapper.saveAttrValues(saveAttrValues);
+       if(null!=pmsBaseAttrInfo.getId()&&!"".equals(pmsBaseAttrInfo.getId())){
+           /*
+           下面进行修改操作
+           1.需要把属性进行更新
+           2.先删除原有的属性值
+           3.再把新添加的属性值进行保存
+            */
+           List<PmsBaseAttrValue> attrValueList=new ArrayList<>();
+           attrInfoMapper.updateAttrInfoById(pmsBaseAttrInfo);
+           attrValueMapper.deleteAttrValueByAttrId(pmsBaseAttrInfo.getId());
+           //接着进行操作属性值的插入
+           List<PmsBaseAttrValue> attrValueListEx = pmsBaseAttrInfo.getAttrValueList();
+           for (PmsBaseAttrValue baseAttrValue : attrValueListEx) {
+               baseAttrValue.setAttrId(pmsBaseAttrInfo.getId());
+               baseAttrValue.setIsEnabled("1");
+               attrValueList.add(baseAttrValue);
+           }
+           attrValueMapper.saveAttrValues(attrValueList);
+       }else {
+           List<PmsBaseAttrValue> saveAttrValues=new ArrayList<>();
+           pmsBaseAttrInfo.setIsEnabled("1");
+           attrInfoMapper.saveAttrInfo(pmsBaseAttrInfo);
+           String attrInfoId=pmsBaseAttrInfo.getId();
+           List<PmsBaseAttrValue> attrValueList = pmsBaseAttrInfo.getAttrValueList();
+           for (PmsBaseAttrValue pmsBaseAttrValue : attrValueList) {
+               pmsBaseAttrValue.setAttrId(String.valueOf(attrInfoId));
+               pmsBaseAttrValue.setIsEnabled("1");
+               saveAttrValues.add(pmsBaseAttrValue);
+           }
+           attrValueMapper.saveAttrValues(saveAttrValues);
+
+       }
     }
 
     @Override
     public List<PmsBaseAttrValue> getAttrValueList(String attrId) {
         List<PmsBaseAttrValue> attrValueList = attrValueMapper.getAttrValueList(attrId);
         return attrValueList;
+    }
+
+    @Override
+    public void deleteAttrValueByAttrId(String attrId) {
+        attrValueMapper.deleteAttrValueByAttrId(attrId);
     }
 }

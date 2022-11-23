@@ -10,4 +10,6 @@ public interface PmsBaseAttrValueMapper {
 
     public List<PmsBaseAttrValue> getAttrValueList(@Param("attrId") String attrId);
 
+    public void deleteAttrValueByAttrId(@Param("attrId")String attrId);
+
 }

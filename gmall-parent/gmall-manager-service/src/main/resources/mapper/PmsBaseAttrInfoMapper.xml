@@ -18,5 +18,10 @@
      values (#{attrName},#{catalog3Id},#{isEnabled})
     </insert>
 
+    <update id="updateAttrInfoById" parameterType="com.xfp.gmall.manager.bean.PmsBaseAttrInfo">
+        update pms_base_attr_info set attr_name=#{attrName},
+        is_enabled=#{isEnabled} where pms_base_attr_info.id=#{id}
+    </update>
+
 
 </mapper>
