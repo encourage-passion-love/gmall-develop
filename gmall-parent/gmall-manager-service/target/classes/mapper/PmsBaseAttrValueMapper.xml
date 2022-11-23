@@ -12,5 +12,10 @@
         </foreach>
     </insert>
 
+    <select id="getAttrValueList" parameterType="string" resultType="com.xfp.gmall.manager.bean.PmsBaseAttrValue">
+        select pav.* from pms_base_attr_value pav
+        where pav.attr_id=#{attrId}
+    </select>
+
 
 </mapper>

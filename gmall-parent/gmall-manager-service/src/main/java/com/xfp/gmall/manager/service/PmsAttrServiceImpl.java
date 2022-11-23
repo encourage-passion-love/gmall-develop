@@ -39,4 +39,10 @@ public class PmsAttrServiceImpl implements PmsAttrService{
         }
         attrValueMapper.saveAttrValues(saveAttrValues);
     }
+
+    @Override
+    public List<PmsBaseAttrValue> getAttrValueList(String attrId) {
+        List<PmsBaseAttrValue> attrValueList = attrValueMapper.getAttrValueList(attrId);
+        return attrValueList;
+    }
 }
