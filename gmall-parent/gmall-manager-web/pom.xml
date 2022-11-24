@@ -12,6 +12,7 @@
     <artifactId>gmall-manager-web</artifactId>
 
 
+
     <dependencies>
         <!--编解码jar包的加载-->
         <dependency>
@@ -156,5 +157,7 @@
 
 
     </dependencies>
+
+
 
 </project>
