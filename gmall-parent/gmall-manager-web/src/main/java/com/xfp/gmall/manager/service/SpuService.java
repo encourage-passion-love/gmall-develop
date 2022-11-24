@@ -8,4 +8,6 @@ public interface SpuService {
 
 
     public List<PmsProductInfo> spuList(String catalog3Id);
+    public PmsProductInfo saveSpuInfo(PmsProductInfo pmsProductInfo);
+
 }
