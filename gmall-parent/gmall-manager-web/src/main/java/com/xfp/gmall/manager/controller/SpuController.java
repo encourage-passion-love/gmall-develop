@@ -8,6 +8,7 @@ import org.csource.fastdfs.ClientGlobal;
 import org.csource.fastdfs.StorageClient;
 import org.csource.fastdfs.TrackerClient;
 import org.csource.fastdfs.TrackerServer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,14 +31,8 @@ public class SpuController {
     @Value("${fdfs.baseUrl}")
     private String fdsfBaseUrl;
 
-    public StorageClient getStorageClient() throws IOException, MyException {
-        String path = SpuController.class.getResource("/tracker.conf").getPath();
-        ClientGlobal.init(path);
-        TrackerClient trackerClient = new TrackerClient();
-        TrackerServer trackerServer = trackerClient.getTrackerServer();
-        StorageClient storageClient = new StorageClient(trackerServer, null);
-        return storageClient;
-    }
+    @Autowired
+    private StorageClient storageClient;
 
 
     @RequestMapping("/spuList")
@@ -51,7 +46,6 @@ public class SpuController {
         byte[] bytes = multipartFile.getBytes();
         String originalFilename = multipartFile.getOriginalFilename();
         String ext_Name = originalFilename.substring(originalFilename.indexOf(".")+1);
-        StorageClient storageClient = getStorageClient();
         String[] upload_file = storageClient.upload_file(bytes, 0, bytes.length, ext_Name, null);
         for (String pth : upload_file) {
             url+="/"+pth;
