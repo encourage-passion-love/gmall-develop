@@ -1,7 +1,9 @@
 package com.xfp.gmall.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.xfp.gmall.manager.bean.PmsProductImage;
 import com.xfp.gmall.manager.bean.PmsProductInfo;
+import com.xfp.gmall.manager.bean.PmsProductSaleAttr;
 import com.xfp.gmall.manager.service.SpuService;
 import org.csource.common.MyException;
 import org.csource.fastdfs.ClientGlobal;
@@ -57,6 +59,17 @@ public class SpuController {
     public PmsProductInfo saveSpuInfo(@RequestBody PmsProductInfo pmsProductInfo){
         PmsProductInfo productInfo = spuService.saveSpuInfo(pmsProductInfo);
         return productInfo;
+    }
+
+    @RequestMapping("/spuSaleAttrList")
+    public List<PmsProductSaleAttr> spuSaleAttrList(@RequestParam("spuId") String spuId){
+        List<PmsProductSaleAttr> spuSaleAttrs=spuService.spuSaleAttrList(spuId);
+        return spuSaleAttrs;
+    }
+    @RequestMapping("/spuImageList")
+    public List<PmsProductImage> spuImageList(@RequestParam("spuId") String spuId){
+        List<PmsProductImage> spuImageList=spuService.spuImageList(spuId);
+        return spuImageList;
     }
 
 }
