@@ -1,4 +1,4 @@
-package com.xfp.gmall.user.bean;
+package com.xfp.gmall.manager.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
