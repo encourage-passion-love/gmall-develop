@@ -34,19 +34,19 @@ public class SkuServiceImpl implements SkuService {
         List<PmsSkuSaleAttrValue> pmsSkuSaleAttrValues=new ArrayList<>();
         List<PmsSkuImage> pmsSkuImages=new ArrayList<>();
         //添加平台属性
-        List<PmsSkuAttrValue> pmsSkuAttrValueList = pmsSkuInfo.getPmsSkuAttrValueList();
+        List<PmsSkuAttrValue> pmsSkuAttrValueList = pmsSkuInfo.getSkuAttrValueList();
         for (PmsSkuAttrValue pmsSkuAttrValue : pmsSkuAttrValueList) {
             pmsSkuAttrValue.setSkuId(skuId);
             pmsSkuAttrValues.add(pmsSkuAttrValue);
         }
         //添加销售属性
-        List<PmsSkuSaleAttrValue> pmsSkuSaleAttrValueList = pmsSkuInfo.getPmsSkuSaleAttrValueList();
+        List<PmsSkuSaleAttrValue> pmsSkuSaleAttrValueList = pmsSkuInfo.getSkuSaleAttrValueList();
         for (PmsSkuSaleAttrValue pmsSkuSaleAttrValue : pmsSkuSaleAttrValueList) {
             pmsSkuSaleAttrValue.setSkuId(skuId);
             pmsSkuSaleAttrValues.add(pmsSkuSaleAttrValue);
         }
         //添加sku所有的image
-        List<PmsSkuImage> pmsSkuImageList = pmsSkuInfo.getPmsSkuImageList();
+        List<PmsSkuImage> pmsSkuImageList = pmsSkuInfo.getSkuImageList();
         for (PmsSkuImage pmsSkuImage : pmsSkuImageList) {
             pmsSkuImage.setSkuId(skuId);
             pmsSkuImages.add(pmsSkuImage);

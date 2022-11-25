@@ -5,7 +5,7 @@
 <mapper namespace="com.xfp.gmall.manager.mapper.PmsSkuImageMapper">
 
     <insert id="saveSkuImages" parameterType="com.xfp.gmall.manager.bean.PmsSkuImage">
-        insert into pms_sku_image(spu_img_id,img_name,img_url,is_default,sku_id)
+        insert into pms_sku_image(product_img_id,img_name,img_url,is_default,sku_id)
         values
         <foreach collection="list" item="img" separator=",">
             (#{img.spuImgId}, #{img.imgName},#{img.imgUrl},#{img.isDefault},#{img.skuId})
