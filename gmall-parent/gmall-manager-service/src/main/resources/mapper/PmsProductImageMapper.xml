@@ -13,6 +13,12 @@
 
 </insert>
 
+<select id="spuImageList" parameterType="string"
+resultType="com.xfp.gmall.manager.bean.PmsProductImage">
+    select ppi.id,ppi.product_id,ppi.img_name,ppi.img_url
+      from pms_product_image ppi
+    where ppi.product_id=#{spuId}
+</select>
 
 
 </mapper>
