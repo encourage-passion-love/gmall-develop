@@ -9,7 +9,10 @@ import com.xfp.gmall.manager.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class SpuServiceImpl implements SpuService {
 
@@ -62,5 +65,27 @@ public class SpuServiceImpl implements SpuService {
         //添加到saleAttrValue表里面去
         pmsProductSaleAttrValueMapper.savePmsSaleAttrValues(pmsProductSaleAttrValues);
         return pmsProductInfo;
+    }
+
+    @Override
+    public List<PmsProductSaleAttr> spuSaleAttrList(String spuId) {
+        Map<String,String> map=new HashMap<>();
+        //查询出销售属性
+        List<PmsProductSaleAttr> saleAtts=pmsProductSaleAttrMapper.spuSaleAttrs(spuId);
+        for (PmsProductSaleAttr saleAtt : saleAtts) {
+            //根据spuId和属性ID进行匹配
+            map.put("spuId",spuId);
+            map.put("saleAttrId",saleAtt.getSaleAttrId());
+            //使用map去查询,之后再进行封装
+            List<PmsProductSaleAttrValue> saleAttrValuesBySpuIdAndAttrId = pmsProductSaleAttrValueMapper.findSaleAttrValuesBySpuIdAndAttrId(map);
+            saleAtt.setSpuSaleAttrValueList(saleAttrValuesBySpuIdAndAttrId);
+        }
+        return saleAtts;
+    }
+
+    @Override
+    public List<PmsProductImage> spuImageList(String spuId) {
+        List<PmsProductImage> pmsProductImages=pmsProductImageMapper.spuImageList(spuId);
+        return pmsProductImages;
     }
 }
