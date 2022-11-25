@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfp.gmall.manager.mapper.PmsSkuInfoMapper">
+
+<insert id="saveSkuInfo" useGeneratedKeys="true" keyProperty="id"
+        parameterType="com.xfp.gmall.manager.bean.PmsSkuInfo">
+    insert into pms_sku_info(spu_id,price,sku_name,weight,sku_desc,catalog3_id,sku_default_img)
+    values(#{spuId},#{price},#{skuName},#{weight},#{skuDesc},#{catalog3Id},#{skuDefaultImg})
+</insert>
+
+
+</mapper>
