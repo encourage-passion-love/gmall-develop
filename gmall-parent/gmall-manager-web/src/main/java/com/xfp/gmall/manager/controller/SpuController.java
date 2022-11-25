@@ -1,15 +1,12 @@
 package com.xfp.gmall.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.xfp.gmall.manager.service.SpuService;
 import com.xfp.gmall.manager.bean.PmsProductImage;
 import com.xfp.gmall.manager.bean.PmsProductInfo;
 import com.xfp.gmall.manager.bean.PmsProductSaleAttr;
-import com.xfp.gmall.manager.service.SpuService;
 import org.csource.common.MyException;
-import org.csource.fastdfs.ClientGlobal;
 import org.csource.fastdfs.StorageClient;
-import org.csource.fastdfs.TrackerClient;
-import org.csource.fastdfs.TrackerServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;

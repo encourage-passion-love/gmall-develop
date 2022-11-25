@@ -12,5 +12,11 @@
     </foreach>
 </insert>
 
+    <select id="spuSaleAttrs" parameterType="string" resultType="com.xfp.gmall.manager.bean.PmsProductSaleAttr">
+        select ppsa.id,ppsa.product_id,ppsa.sale_attr_id,ppsa.sale_attr_name
+          from pms_product_sale_attr ppsa
+        where ppsa.product_id=#{spuId}
+    </select>
+
 
 </mapper>

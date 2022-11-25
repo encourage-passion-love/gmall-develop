@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfp.gmall.manager.mapper.PmsSkuAttrValueMapper">
+
+    <insert id="saveSkuAttrValues" parameterType="com.xfp.gmall.manager.bean.PmsSkuAttrValue">
+        insert into pms_sku_attr_value(attr_id,value_id,sku_id)
+        values
+        <foreach collection="list" item="attrVal" separator=",">
+            (#{attrVal.attrId}, #{attrVal.valueId},#{attrVal.skuId})
+        </foreach>
+    </insert>
+
+
+</mapper>

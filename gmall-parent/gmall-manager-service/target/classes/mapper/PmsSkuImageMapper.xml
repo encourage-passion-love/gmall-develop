@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfp.gmall.manager.mapper.PmsSkuImageMapper">
+
+    <insert id="saveSkuImages" parameterType="com.xfp.gmall.manager.bean.PmsSkuImage">
+        insert into pms_sku_image(product_img_id,img_name,img_url,is_default,sku_id)
+        values
+        <foreach collection="list" item="img" separator=",">
+            (#{img.spuImgId}, #{img.imgName},#{img.imgUrl},#{img.isDefault},#{img.skuId})
+        </foreach>
+    </insert>
+
+
+
+</mapper>

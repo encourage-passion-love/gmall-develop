@@ -45,6 +45,7 @@
         <module>gmall-user-web</module>
         <module>gmall-manager-service</module>
         <module>gmall-manager-web</module>
+        <module>gmall-item-web</module>
     </modules>
     <dependencyManagement>
 
