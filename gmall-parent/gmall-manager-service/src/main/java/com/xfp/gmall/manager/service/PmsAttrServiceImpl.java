@@ -23,6 +23,12 @@ public class PmsAttrServiceImpl implements PmsAttrService{
     @Override
     public List<PmsBaseAttrInfo> attrInfoList(String catalog3Id) {
         List<PmsBaseAttrInfo> pmsBaseAttrInfos = attrInfoMapper.attrInfoList(catalog3Id);
+        //里面有属性ID通过属性ID进行获取属性值
+        for (PmsBaseAttrInfo pmsBaseAttrInfo : pmsBaseAttrInfos) {
+            String pmsBaseAttrInfoId = pmsBaseAttrInfo.getId();
+         List<PmsBaseAttrValue> attrValues=   attrValueMapper.findAttrValuesByAttrId(pmsBaseAttrInfoId);
+            pmsBaseAttrInfo.setAttrValueList(attrValues);
+        }
         return pmsBaseAttrInfos;
     }
 

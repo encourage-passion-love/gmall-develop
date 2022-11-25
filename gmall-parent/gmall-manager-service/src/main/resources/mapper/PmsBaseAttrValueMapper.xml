@@ -22,5 +22,9 @@
         delete from pms_base_attr_value where attr_id=#{attrId}
     </delete>
 
+<select id="findAttrValuesByAttrId" parameterType="string" resultType="com.xfp.gmall.manager.bean.PmsBaseAttrValue">
+    select pbav.id,pbav.value_name,pbav.attr_id,pbav.is_enabled from pms_base_attr_value pbav
+    where pbav.attr_id=#{attrId}
+</select>
 
 </mapper>
