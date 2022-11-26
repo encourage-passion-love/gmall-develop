@@ -89,4 +89,13 @@ public class SpuServiceImpl implements SpuService {
         List<PmsProductImage> pmsProductImages=pmsProductImageMapper.spuImageList(spuId);
         return pmsProductImages;
     }
+
+    @Override
+    public List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(String spuId,String skuId) {
+        Map<String,String> map=new HashMap<>();
+            map.put("spuId",spuId);
+            map.put("skuId",skuId);
+        List<PmsProductSaleAttr> pmsProductSaleAttrBySpuIdAndSkuId = pmsProductSaleAttrMapper.findPmsProductSaleAttrBySpuIdAndSkuId(map);
+        return pmsProductSaleAttrBySpuIdAndSkuId;
+    }
 }
