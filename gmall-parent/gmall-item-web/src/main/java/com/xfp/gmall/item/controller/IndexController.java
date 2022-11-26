@@ -1,6 +1,8 @@
 package com.xfp.gmall.item.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.xfp.gmall.manager.service.SpuService;
+import com.xfp.gmall.manager.bean.PmsProductSaleAttr;
 import com.xfp.gmall.manager.bean.PmsSkuInfo;
 import com.xfp.gmall.manager.service.SkuService;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ public class IndexController {
 
     @Reference
     private SkuService skuService;
+    @Reference
+    private SpuService spuService;
 
     @RequestMapping("/index")
     public String index(ModelMap modelMap){
@@ -32,7 +36,9 @@ public class IndexController {
     @RequestMapping("{skuId}.html")
     public String  skuInfo(@PathVariable String skuId,ModelMap modelMap){
         PmsSkuInfo skuInfo=skuService.findSkuInfoById(skuId);
+        List<PmsProductSaleAttr> pmsProductSaleAttrs=spuService.spuSaleAttrListCheckBySku(skuInfo.getSpuId(),skuId);
         modelMap.put("skuInfo",skuInfo);
+        modelMap.put("spuSaleAttrListCheckBySku",pmsProductSaleAttrs);
         return "item";
     }
 
