@@ -12,6 +12,13 @@
         </foreach>
     </insert>
 
+    <select id="findSkuImgsBySkuId" parameterType="string" resultType="com.xfp.gmall.manager.bean.PmsSkuImage">
+        select pki.id,pki.sku_id,pki.img_name,pki.img_url,
+        pki.product_img_id as spu_img_id,pki.is_default
+         from pms_sku_image pki
+        where pki.sku_id=#{skuId}
+    </select>
+
 
 
 </mapper>

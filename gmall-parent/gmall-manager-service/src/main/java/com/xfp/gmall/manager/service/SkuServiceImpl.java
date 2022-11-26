@@ -57,4 +57,19 @@ public class SkuServiceImpl implements SkuService {
         pmsSkuImageMapper.saveSkuImages(pmsSkuImages);
         return pmsSkuInfo;
     }
+
+    @Override
+    public PmsSkuInfo findSkuInfoById(String skuId) {
+        PmsSkuInfo skuById = pmsSkuInfoMapper.findSkuById(skuId);
+        //获取sku的图片列表
+        List<PmsSkuImage> skuImgsBySkuId = pmsSkuImageMapper.findSkuImgsBySkuId(skuId);
+        //获取sku的平台属性值
+        List<PmsSkuAttrValue> attrvaluesBySkuId = pmsSkuAttrValueMapper.findAttrvaluesBySkuId(skuId);
+        //获取sku的销售属性值
+        List<PmsSkuSaleAttrValue> saleAttrvalueBySkuId = pmsSkuSaleAttrValueMapper.findSaleAttrvalueBySkuId(skuId);
+        skuById.setSkuImageList(skuImgsBySkuId);
+        skuById.setSkuAttrValueList(attrvaluesBySkuId);
+        skuById.setSkuSaleAttrValueList(saleAttrvalueBySkuId);
+        return skuById;
+    }
 }

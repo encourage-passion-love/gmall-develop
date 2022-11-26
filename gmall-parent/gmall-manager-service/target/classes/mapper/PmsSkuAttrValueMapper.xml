@@ -13,4 +13,11 @@
     </insert>
 
 
+    <select id="findAttrvaluesBySkuId" parameterType="string"
+    resultType="com.xfp.gmall.manager.bean.PmsSkuAttrValue">
+        select psav.* from pms_sku_attr_value psav
+        where psav.sku_id=#{skuId}
+    </select>
+
+
 </mapper>

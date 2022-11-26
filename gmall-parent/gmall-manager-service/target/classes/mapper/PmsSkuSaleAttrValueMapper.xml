@@ -15,5 +15,11 @@
         </foreach>
     </insert>
 
+    <select id="findSaleAttrvalueBySkuId" parameterType="string"
+    resultType="com.xfp.gmall.manager.bean.PmsSkuSaleAttrValue">
+        select pssav.*  from pms_sku_sale_attr_value pssav
+        where pssav.sku_id=#{skuId}
+    </select>
+
 
 </mapper>

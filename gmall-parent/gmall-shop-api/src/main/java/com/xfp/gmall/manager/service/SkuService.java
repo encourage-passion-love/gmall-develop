@@ -5,6 +5,6 @@ import com.xfp.gmall.manager.bean.PmsSkuInfo;
 public interface SkuService {
 
     public PmsSkuInfo saveSkuInfo(PmsSkuInfo pmsSkuInfo);
-
+    public PmsSkuInfo findSkuInfoById(String skuId);
 
 }

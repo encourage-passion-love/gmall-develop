@@ -6,6 +6,11 @@
     <title>Title</title>
 </head>
 <body>
-测试一下Thymeleaf模板引擎是否可用
+测试一下Thymeleaf模板引擎是否可用<br />
+${key}<br />
+<p th:text="${key}">打底值</p><br />
+<p th:each="str:${list}">
+    <input th:text="${str}" th:value="${str}"/>
+</p>
 </body>
 </html>

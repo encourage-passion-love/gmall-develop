@@ -56,7 +56,7 @@
               <version>${mybatis.version}</version>
           </dependency>-->
 
-
+        <!--thymeleaf的三个依赖包，包含松校验-->
         <dependency>
             <groupId>net.sourceforge.nekohtml</groupId>
             <artifactId>nekohtml</artifactId>

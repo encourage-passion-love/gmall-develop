@@ -11,4 +11,12 @@
 </insert>
 
 
+    <select id="findSkuById" parameterType="string" resultType="com.xfp.gmall.manager.bean.PmsSkuInfo">
+        select pki.id,pki.product_id as spu_id,pki.price,pki.sku_name,
+        pki.sku_desc,pki.weight,pki.catalog3_id,pki.sku_default_img
+        from pms_sku_info pki
+        where pki.id=#{skuId}
+    </select>
+
+
 </mapper>

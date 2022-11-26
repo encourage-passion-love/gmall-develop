@@ -1,2 +1,3 @@
 com\xfp\gmall\item\controller\IndexController.class
 com\xfp\gmall\item\GMallItemApp.class
+com\xfp\gmall\item\service\SkuService.class
