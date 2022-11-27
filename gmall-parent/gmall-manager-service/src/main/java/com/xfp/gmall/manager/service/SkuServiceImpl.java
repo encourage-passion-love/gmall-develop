@@ -1,6 +1,8 @@
 package com.xfp.gmall.manager.service;
 
+
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSON;
 import com.xfp.gmall.manager.bean.PmsSkuAttrValue;
 import com.xfp.gmall.manager.bean.PmsSkuImage;
 import com.xfp.gmall.manager.bean.PmsSkuInfo;
@@ -9,7 +11,10 @@ import com.xfp.gmall.manager.mapper.PmsSkuAttrValueMapper;
 import com.xfp.gmall.manager.mapper.PmsSkuImageMapper;
 import com.xfp.gmall.manager.mapper.PmsSkuInfoMapper;
 import com.xfp.gmall.manager.mapper.PmsSkuSaleAttrValueMapper;
+import com.xfp.gmall.util.RedisUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import redis.clients.jedis.Jedis;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +30,8 @@ public class SkuServiceImpl implements SkuService {
     private PmsSkuAttrValueMapper pmsSkuAttrValueMapper;
     @Autowired
     private PmsSkuSaleAttrValueMapper pmsSkuSaleAttrValueMapper;
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public PmsSkuInfo saveSkuInfo(PmsSkuInfo pmsSkuInfo) {
@@ -58,8 +65,7 @@ public class SkuServiceImpl implements SkuService {
         return pmsSkuInfo;
     }
 
-    @Override
-    public PmsSkuInfo findSkuInfoById(String skuId) {
+    public PmsSkuInfo getSkuInfoFromDB(String skuId){
         PmsSkuInfo skuById = pmsSkuInfoMapper.findSkuById(skuId);
         //获取sku的图片列表
         List<PmsSkuImage> skuImgsBySkuId = pmsSkuImageMapper.findSkuImgsBySkuId(skuId);
@@ -71,5 +77,51 @@ public class SkuServiceImpl implements SkuService {
         skuById.setSkuAttrValueList(attrvaluesBySkuId);
         skuById.setSkuSaleAttrValueList(saleAttrvalueBySkuId);
         return skuById;
+    }
+
+    @Override
+    public PmsSkuInfo findSkuInfoById(String skuId)throws Exception {
+        //连接redis
+        PmsSkuInfo pmsSkuInfo=null;
+        Jedis jedis = null;
+        String disLock="sku:"+skuId+":lock";
+        try {
+            pmsSkuInfo=new PmsSkuInfo();
+            jedis=redisUtil.getJedis();
+            String skuStr = jedis.get("sku:" + skuId + ":info");
+            if(StringUtils.isNotBlank(skuStr)){
+                //出出来数据了
+                pmsSkuInfo = JSON.parseObject(skuStr,PmsSkuInfo.class);
+            }else {
+                String set = jedis.set(disLock, "1", "nx", "ex", 10);
+                if(StringUtils.isNotBlank(set)&&"OK".equals(set)){
+                    pmsSkuInfo = getSkuInfoFromDB(skuId);
+                    if(pmsSkuInfo!=null){
+                        jedis.set("sku:" + skuId + ":info",JSON.toJSONString(pmsSkuInfo));
+                    }else {
+                        //防止缓存穿透给数据库造成压力 所以在2分钟以内
+                        //读取的都是缓存中的空字符串
+                        jedis.setex("sku:" + skuId + ":info",60*2,JSON.toJSONString(""));
+                    }
+                }
+                else {
+                    Thread.sleep(3000);
+                    return findSkuInfoById(skuId);
+                }
+            }
+        }catch (Exception e){
+            jedis.del(disLock);
+            e.printStackTrace();
+        }finally {
+            jedis.del(disLock);
+            jedis.close();
+        }
+       return pmsSkuInfo;
+    }
+
+    @Override
+    public List<PmsSkuInfo> getSkusBySpuId(String spuId) {
+        List<PmsSkuInfo> skus=pmsSkuInfoMapper.getSkusBySpuId(spuId);
+        return skus;
     }
 }

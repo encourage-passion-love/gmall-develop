@@ -38,7 +38,7 @@ public class IndexController {
 
 
     @RequestMapping("{skuId}.html")
-    public String  skuInfo(@PathVariable String skuId,ModelMap modelMap){
+    public String  skuInfo(@PathVariable String skuId,ModelMap modelMap) throws Exception {
         PmsSkuInfo skuInfo=skuService.findSkuInfoById(skuId);
         String spuId=skuInfo.getSpuId();
         List<PmsProductSaleAttr> pmsProductSaleAttrs=spuService.spuSaleAttrListCheckBySku(spuId,skuId);

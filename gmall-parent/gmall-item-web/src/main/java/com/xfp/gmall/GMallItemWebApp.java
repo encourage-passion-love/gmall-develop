@@ -1,11 +1,11 @@
-package com.xfp.gmall.item;
+package com.xfp.gmall;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GMallItemApp {
+public class GMallItemWebApp {
     public static void main(String[] args) {
-        SpringApplication.run(GMallItemApp.class,args);
+        SpringApplication.run(GMallItemWebApp.class,args);
     }
 }
