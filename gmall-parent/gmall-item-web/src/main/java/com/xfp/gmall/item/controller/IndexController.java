@@ -1,6 +1,8 @@
 package com.xfp.gmall.item.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.fastjson.JSON;
+import com.xfp.gmall.manager.bean.PmsSkuSaleAttrValue;
 import com.xfp.gmall.manager.service.SpuService;
 import com.xfp.gmall.manager.bean.PmsProductSaleAttr;
 import com.xfp.gmall.manager.bean.PmsSkuInfo;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class IndexController {
@@ -36,9 +40,28 @@ public class IndexController {
     @RequestMapping("{skuId}.html")
     public String  skuInfo(@PathVariable String skuId,ModelMap modelMap){
         PmsSkuInfo skuInfo=skuService.findSkuInfoById(skuId);
-        List<PmsProductSaleAttr> pmsProductSaleAttrs=spuService.spuSaleAttrListCheckBySku(skuInfo.getSpuId(),skuId);
+        String spuId=skuInfo.getSpuId();
+        List<PmsProductSaleAttr> pmsProductSaleAttrs=spuService.spuSaleAttrListCheckBySku(spuId,skuId);
+        List<PmsSkuInfo> skuS=skuService.getSkusBySpuId(spuId);
+        Map<String,String> skuSaleAttrHash=new HashMap<>();
+        for (PmsSkuInfo pmsSkuInfo : skuS) {
+            String skuid=pmsSkuInfo.getId();
+            String key="";
+            List<PmsSkuSaleAttrValue> skuSaleAttrValueList = pmsSkuInfo.getSkuSaleAttrValueList();
+            for (int i = 0; i <skuSaleAttrValueList.size() ; i++) {
+                String saleAttrValueId = skuSaleAttrValueList.get(i).getSaleAttrValueId();
+                if(i!=(skuSaleAttrValueList.size()-1)){
+                    key+=saleAttrValueId+"|";
+                }else {
+                    key+=saleAttrValueId;
+                }
+            }
+            skuSaleAttrHash.put(key,skuid);
+        }
+        String skuSaleAttrHashJsonStr = JSON.toJSONString(skuSaleAttrHash);
         modelMap.put("skuInfo",skuInfo);
         modelMap.put("spuSaleAttrListCheckBySku",pmsProductSaleAttrs);
+        modelMap.put("skuSaleAttrHashJsonStr",skuSaleAttrHashJsonStr);
         return "item";
     }
 

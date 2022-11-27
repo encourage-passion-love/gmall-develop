@@ -19,4 +19,18 @@
     </select>
 
 
+    <select id="getSkusBySpuId" parameterType="string" resultMap="skusBySpuId">
+    select pki.id as pki_id,pssav.id as pssav_id,pki.*,pssav.*
+     from pms_sku_info pki,pms_sku_sale_attr_value pssav
+    where pssav.sku_id=pki.id and pki.product_id=#{spuId}
+    </select>
+    <resultMap id="skusBySpuId" type="com.xfp.gmall.manager.bean.PmsSkuInfo" autoMapping="true">
+        <result column="pki_id" property="id"></result>
+        <collection property="skuSaleAttrValueList" autoMapping="true"
+                    ofType="com.xfp.gmall.manager.bean.PmsSkuSaleAttrValue">
+            <result column="pssav_id" property="id"></result>
+        </collection>
+    </resultMap>
+
+
 </mapper>
