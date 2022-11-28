@@ -17,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.Jedis;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class SkuServiceImpl implements SkuService {
@@ -85,7 +87,7 @@ public class SkuServiceImpl implements SkuService {
         PmsSkuInfo pmsSkuInfo=null;
         Jedis jedis = null;
         String disLock="sku:"+skuId+":lock";
-        try {
+
             pmsSkuInfo=new PmsSkuInfo();
             jedis=redisUtil.getJedis();
             String skuStr = jedis.get("sku:" + skuId + ":info");
@@ -93,28 +95,33 @@ public class SkuServiceImpl implements SkuService {
                 //出出来数据了
                 pmsSkuInfo = JSON.parseObject(skuStr,PmsSkuInfo.class);
             }else {
-                String set = jedis.set(disLock, "1", "nx", "ex", 10);
-                if(StringUtils.isNotBlank(set)&&"OK".equals(set)){
-                    pmsSkuInfo = getSkuInfoFromDB(skuId);
-                    if(pmsSkuInfo!=null){
-                        jedis.set("sku:" + skuId + ":info",JSON.toJSONString(pmsSkuInfo));
-                    }else {
-                        //防止缓存穿透给数据库造成压力 所以在2分钟以内
-                        //读取的都是缓存中的空字符串
-                        jedis.setex("sku:" + skuId + ":info",60*2,JSON.toJSONString(""));
-                    }
-                }
-                else {
-                    Thread.sleep(3000);
-                    return findSkuInfoById(skuId);
-                }
-            }
-        }catch (Exception e){
-            jedis.del(disLock);
-            e.printStackTrace();
-        }finally {
-            jedis.del(disLock);
-            jedis.close();
+                String token= UUID.randomUUID().toString();
+              try {
+                  String set = jedis.set(disLock, token, "nx", "ex", 10*1000);
+                  if(StringUtils.isNotBlank(set)&&"OK".equals(set)){
+                      pmsSkuInfo = getSkuInfoFromDB(skuId);
+                      if(pmsSkuInfo!=null){
+                          jedis.set("sku:" + skuId + ":info",JSON.toJSONString(pmsSkuInfo));
+                          //这个地方删除自己得锁就OK了
+                          String disToken = jedis.get(disLock);
+                          String script="if redis.call('get',KEYS[1])==ARGV[1] then return redis.call('del',KEYS[1]) else return 0 end";
+                          jedis.eval(script, Collections.singletonList(disLock),Collections.singletonList(disToken));
+                      }else {
+                          //防止缓存穿透给数据库造成压力 所以在2分钟以内
+                          //读取的都是缓存中的空字符串
+                          jedis.setex("sku:" + skuId + ":info",60*2,JSON.toJSONString(""));
+                      }
+                  }
+                  else {
+                      Thread.sleep(3000);
+                      return findSkuInfoById(skuId);
+                  }
+              }catch (Exception e){
+                  e.printStackTrace();
+                  jedis.del(disLock);
+              }finally {
+                  jedis.close();
+              }
         }
        return pmsSkuInfo;
     }
