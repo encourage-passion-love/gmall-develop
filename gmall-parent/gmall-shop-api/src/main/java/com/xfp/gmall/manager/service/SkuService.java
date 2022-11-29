@@ -9,6 +9,6 @@ public interface SkuService {
     public PmsSkuInfo saveSkuInfo(PmsSkuInfo pmsSkuInfo);
     public PmsSkuInfo findSkuInfoById(String skuId)throws Exception;
     public List<PmsSkuInfo> getSkusBySpuId(String spuId);
-
+    public List<PmsSkuInfo> getAllSkuInfo();
 
 }
