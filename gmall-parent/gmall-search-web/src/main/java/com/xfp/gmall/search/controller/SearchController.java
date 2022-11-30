@@ -1,20 +1,22 @@
 package com.xfp.gmall.search.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.xfp.gmall.manager.bean.PmsSearchParam;
 import com.xfp.gmall.manager.bean.PmsSearchSkuInfo;
 import com.xfp.gmall.manager.service.SkuSearchService;
 import io.searchbox.client.JestClient;
 import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Index;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-@RestController
+@Controller
 public class SearchController {
     @Reference
     private SkuSearchService skuSearchService;
@@ -22,11 +24,13 @@ public class SearchController {
     private JestClient jestClient;
 
     @RequestMapping("/search")
+    @ResponseBody
     public List<PmsSearchSkuInfo> getSearchInfo() throws InvocationTargetException, IllegalAccessException {
         List<PmsSearchSkuInfo> allSkuInfo = skuSearchService.getAllSkuInfo();
         return allSkuInfo;
     }
     @RequestMapping("/import")
+    @ResponseBody
     public String importDataFromSqlToES() throws InvocationTargetException, IllegalAccessException, IOException {
 
         List<PmsSearchSkuInfo> allSkuInfo = skuSearchService.getAllSkuInfo();
@@ -35,5 +39,11 @@ public class SearchController {
              jestClient.execute(build);
         }
         return "数据库数据导入ES索引库成功！！";
+    }
+    @RequestMapping("list.html")
+    public String  list( PmsSearchParam pmsSearchParam, ModelMap map){
+        List<PmsSearchSkuInfo> pmsSearchSkuInfos=skuSearchService.getDataFromES(pmsSearchParam);
+        map.put("skuLsInfoList",pmsSearchSkuInfos);
+        return "list";
     }
 }
