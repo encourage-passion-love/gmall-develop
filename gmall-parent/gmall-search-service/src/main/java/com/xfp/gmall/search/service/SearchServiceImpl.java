@@ -19,6 +19,7 @@ import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.highlight.HighlightBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
@@ -27,6 +28,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SearchServiceImpl  implements SkuSearchService {
@@ -60,6 +62,10 @@ public class SearchServiceImpl  implements SkuSearchService {
             List<SearchResult.Hit<PmsSearchSkuInfo, Void>> hits = execute.getHits(PmsSearchSkuInfo.class);
             for (SearchResult.Hit<PmsSearchSkuInfo, Void> hit : hits) {
                 PmsSearchSkuInfo source = hit.source;
+                Map<String, List<String>> highlight = hit.highlight;
+                List<String> skuNames = highlight.get("skuName");
+                String skuName = skuNames.get(0);
+                source.setSkuName(skuName);
                 infos.add(source);
             }
             return infos;
@@ -89,9 +95,15 @@ public class SearchServiceImpl  implements SkuSearchService {
                 boolQueryBuilder.filter(termQueryBuilder);
             }
         }
+        searchSourceBuilder.query(boolQueryBuilder);
+        HighlightBuilder highlightBuilder = new HighlightBuilder();
+        highlightBuilder.preTags("<span style='color:red;'>");
+        highlightBuilder.field("skuName");
+        highlightBuilder.postTags("</span>");
+        searchSourceBuilder.highlight(highlightBuilder);
         searchSourceBuilder.from(0);
         searchSourceBuilder.size(100);
-        searchSourceBuilder = searchSourceBuilder.query(boolQueryBuilder);
+
         return searchSourceBuilder.toString();
     }
 
