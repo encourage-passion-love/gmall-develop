@@ -105,7 +105,6 @@ public class SearchServiceImpl  implements SkuSearchService {
         searchSourceBuilder.highlight(highlightBuilder);
         searchSourceBuilder.from(0);
         searchSourceBuilder.size(100);
-
         return searchSourceBuilder.toString();
     }
 
