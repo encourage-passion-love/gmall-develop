@@ -63,9 +63,11 @@ public class SearchServiceImpl  implements SkuSearchService {
             for (SearchResult.Hit<PmsSearchSkuInfo, Void> hit : hits) {
                 PmsSearchSkuInfo source = hit.source;
                 Map<String, List<String>> highlight = hit.highlight;
-                List<String> skuNames = highlight.get("skuName");
-                String skuName = skuNames.get(0);
-                source.setSkuName(skuName);
+                if(highlight!=null){
+                    List<String> skuNames = highlight.get("skuName");
+                    String skuName = skuNames.get(0);
+                    source.setSkuName(skuName);
+                }
                 infos.add(source);
             }
             return infos;
