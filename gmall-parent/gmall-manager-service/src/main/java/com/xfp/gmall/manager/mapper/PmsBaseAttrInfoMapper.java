@@ -11,4 +11,5 @@ public interface PmsBaseAttrInfoMapper {
     public List<PmsBaseAttrInfo> attrInfoList(@Param("catalog3Id") String catalog3Id);
     public void updateAttrInfoById(PmsBaseAttrInfo pmsBaseAttrInfo);
     public List<PmsBaseSaleAttr> baseSaleAttrList();
+    public List<PmsBaseAttrInfo> getBaseAttrListBySkuValueIds(@Param("vIds") String vIds);
 }

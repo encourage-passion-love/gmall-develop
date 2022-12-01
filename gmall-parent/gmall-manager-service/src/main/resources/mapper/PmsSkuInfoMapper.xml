@@ -32,5 +32,20 @@
         </collection>
     </resultMap>
 
+    <select id="getAllSkuInfo" resultMap="allSkuInfos">
+        select psi.id as skuId,psi.product_id as spuId,psav.id as psav_id,
+        psi.*,psav.*
+         from pms_sku_info psi,pms_sku_attr_value psav
+        where psav.sku_id=psi.id
+    </select>
+    <resultMap id="allSkuInfos" type="com.xfp.gmall.manager.bean.PmsSkuInfo" autoMapping="true">
+        <result property="id" column="skuId"></result>
+        <result property="spuId" column="spuId"></result>
+        <collection property="skuAttrValueList"  autoMapping="true"
+                    ofType="com.xfp.gmall.manager.bean.PmsSkuAttrValue">
+            <result property="id" column="psav_id"></result>
+        </collection>
+    </resultMap>
+
 
 </mapper>

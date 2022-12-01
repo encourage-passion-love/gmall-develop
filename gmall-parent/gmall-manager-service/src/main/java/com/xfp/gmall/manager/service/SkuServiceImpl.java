@@ -3,23 +3,14 @@ package com.xfp.gmall.manager.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
-import com.xfp.gmall.manager.bean.PmsSkuAttrValue;
-import com.xfp.gmall.manager.bean.PmsSkuImage;
-import com.xfp.gmall.manager.bean.PmsSkuInfo;
-import com.xfp.gmall.manager.bean.PmsSkuSaleAttrValue;
-import com.xfp.gmall.manager.mapper.PmsSkuAttrValueMapper;
-import com.xfp.gmall.manager.mapper.PmsSkuImageMapper;
-import com.xfp.gmall.manager.mapper.PmsSkuInfoMapper;
-import com.xfp.gmall.manager.mapper.PmsSkuSaleAttrValueMapper;
+import com.xfp.gmall.manager.bean.*;
+import com.xfp.gmall.manager.mapper.*;
 import com.xfp.gmall.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.Jedis;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class SkuServiceImpl implements SkuService {
@@ -34,6 +25,8 @@ public class SkuServiceImpl implements SkuService {
     private PmsSkuSaleAttrValueMapper pmsSkuSaleAttrValueMapper;
     @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    private PmsBaseAttrInfoMapper pmsBaseAttrInfoMapper;
 
     @Override
     public PmsSkuInfo saveSkuInfo(PmsSkuInfo pmsSkuInfo) {
@@ -136,5 +129,12 @@ public class SkuServiceImpl implements SkuService {
     public List<PmsSkuInfo> getAllSkuInfo() {
         List<PmsSkuInfo> pmsSkuInfos=pmsSkuInfoMapper.getAllSkuInfo();
         return pmsSkuInfos;
+    }
+
+    @Override
+    public List<PmsBaseAttrInfo> getPmsAttrListBySkuValueId(Set<String> valueIds) {
+        String vIds = StringUtils.join(valueIds, ",");
+        List<PmsBaseAttrInfo> attrs=pmsBaseAttrInfoMapper.getBaseAttrListBySkuValueIds(vIds);
+        return attrs;
     }
 }
