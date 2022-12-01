@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class SearchController {
@@ -36,6 +33,12 @@ public class SearchController {
         List<PmsSearchSkuInfo> allSkuInfo = skuSearchService.getAllSkuInfo();
         return allSkuInfo;
     }
+
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
+    }
+
     @RequestMapping("/import")
     @ResponseBody
     public String importDataFromSqlToES() throws InvocationTargetException, IllegalAccessException, IOException {
@@ -43,15 +46,16 @@ public class SearchController {
         List<PmsSearchSkuInfo> allSkuInfo = skuSearchService.getAllSkuInfo();
         for (PmsSearchSkuInfo pmsSearchSkuInfo : allSkuInfo) {
             Index build = new Index.Builder(pmsSearchSkuInfo).index("gmallpms").type("pmsskuinfo").id(pmsSearchSkuInfo.getId()).build();
-             jestClient.execute(build);
+            jestClient.execute(build);
         }
         return "数据库数据导入ES索引库成功！！";
     }
+
     @RequestMapping("list.html")
-    public String  list( PmsSearchParam pmsSearchParam, ModelMap map){
-        List<PmsSearchSkuInfo> pmsSearchSkuInfos=skuSearchService.getDataFromES(pmsSearchParam);
+    public String list(PmsSearchParam pmsSearchParam, ModelMap map) {
+        List<PmsSearchSkuInfo> pmsSearchSkuInfos = skuSearchService.getDataFromES(pmsSearchParam);
         Set<String> valueIds = new HashSet<>();
-        if(pmsSearchSkuInfos!=null&&pmsSearchSkuInfos.size()>0){
+        if (pmsSearchSkuInfos != null && pmsSearchSkuInfos.size() > 0) {
             for (PmsSearchSkuInfo pmsSearchSkuInfo : pmsSearchSkuInfos) {
                 List<PmsSkuAttrValue> skuAttrValueList = pmsSearchSkuInfo.getSkuAttrValueList();
                 for (PmsSkuAttrValue pmsSkuAttrValue : skuAttrValueList) {
@@ -60,56 +64,99 @@ public class SearchController {
                 }
             }
         }
-        List<PmsBaseAttrInfo> attrs=skuService.getPmsAttrListBySkuValueId(valueIds);
+        map.put("skuLsInfoList", pmsSearchSkuInfos);
+        List<PmsBaseAttrInfo> attrs = skuService.getPmsAttrListBySkuValueId(valueIds);
         //去除已经选择的属性值的ID
         String[] delValueIds = pmsSearchParam.getValueId();
-        Iterator<PmsBaseAttrInfo> iterator = attrs.iterator();
-        while (iterator.hasNext()){
-            PmsBaseAttrInfo next = iterator.next();
-            List<PmsBaseAttrValue> attrValueList = next.getAttrValueList();
-            if(attrValueList!=null&&attrValueList.size()>0){
-                for (PmsBaseAttrValue pmsBaseAttrValue : attrValueList) {
-                   if(delValueIds!=null&&delValueIds.length>0){
-                       for (String delValueId : delValueIds) {
-                           if(delValueId.equals(pmsBaseAttrValue.getId())){
-                               iterator.remove();
-                           }
-                       }
-                   }
+        map.put("attrList", attrs);
+        List<PmsSearchCrumb> crumbs = new ArrayList<>();
+        if (delValueIds != null && delValueIds.length > 0) {
+            for (String delValueId : delValueIds) {
+                Iterator<PmsBaseAttrInfo> iterator = attrs.iterator();
+                String urlParams = combineQueryOptionsOne(pmsSearchParam, delValueId);
+                PmsSearchCrumb pmsSearchCrumb = new PmsSearchCrumb();
+                pmsSearchCrumb.setValueId(delValueId);
+                pmsSearchCrumb.setUrlParam(urlParams);
+                while (iterator.hasNext()) {
+                    PmsBaseAttrInfo next = iterator.next();
+                    List<PmsBaseAttrValue> attrValueList = next.getAttrValueList();
+                    if (attrValueList != null && attrValueList.size() > 0) {
+                        for (PmsBaseAttrValue pmsBaseAttrValue : attrValueList) {
+                            if (delValueId.equals(pmsBaseAttrValue.getId())) {
+                                pmsSearchCrumb.setValueName(pmsBaseAttrValue.getValueName());
+                                iterator.remove();
+                            }
+                        }
+                    }
                 }
+                crumbs.add(pmsSearchCrumb);
             }
+            map.put("attrValueSelectedList", crumbs);
         }
         String urlParam = combineQueryOptions(pmsSearchParam);
-        map.put("skuLsInfoList",pmsSearchSkuInfos);
-        map.put("attrList",attrs);
-        map.put("urlParam",urlParam);
+        map.put("urlParam", urlParam);
+        String keyword = pmsSearchParam.getKeyword();
+        if (StringUtils.isNotBlank(keyword)) {
+            map.put("keyword", keyword);
+        }
         return "list";
     }
 
-    public String combineQueryOptions(PmsSearchParam pmsSearchParam){
+    public String combineQueryOptions(PmsSearchParam pmsSearchParam) {
         String keyword = pmsSearchParam.getKeyword();
         String catalog3Id = pmsSearchParam.getCatalog3Id();
-        String urlParam="";
+        String urlParam = "";
         String[] skuAttrValueList = pmsSearchParam.getValueId();
-        if(StringUtils.isNotBlank(keyword)){
-            if(StringUtils.isNotBlank(urlParam)){
-                urlParam=urlParam+"&";
+        if (StringUtils.isNotBlank(keyword)) {
+            if (StringUtils.isNotBlank(urlParam)) {
+                urlParam = urlParam + "&";
             }
-            urlParam=urlParam+"keyword="+keyword;
+            urlParam = urlParam + "keyword=" + keyword;
         }
-        if(StringUtils.isNotBlank(catalog3Id)){
-            if(StringUtils.isNotBlank(urlParam)){
-                urlParam=urlParam+"&";
+        if (StringUtils.isNotBlank(catalog3Id)) {
+            if (StringUtils.isNotBlank(urlParam)) {
+                urlParam = urlParam + "&";
             }
-            urlParam=urlParam+"catalog3Id="+catalog3Id;
+            urlParam = urlParam + "catalog3Id=" + catalog3Id;
         }
-
-        if(skuAttrValueList!=null&&skuAttrValueList.length>0){
+        if (skuAttrValueList != null && skuAttrValueList.length > 0) {
             for (String pmsSkuAttrValue : skuAttrValueList) {
-                if(StringUtils.isNotBlank(urlParam)){
-                    urlParam=urlParam+"&";
+                if (StringUtils.isNotBlank(urlParam)) {
+                    urlParam = urlParam + "&";
                 }
-                urlParam=urlParam+"valueId="+pmsSkuAttrValue;
+                urlParam = urlParam + "valueId=" + pmsSkuAttrValue;
+            }
+        }
+        return urlParam;
+    }
+
+    public String combineQueryOptionsOne(PmsSearchParam pmsSearchParam, String delValueId) {
+        String keyword = pmsSearchParam.getKeyword();
+        String catalog3Id = pmsSearchParam.getCatalog3Id();
+        String urlParam = "";
+        String[] skuAttrValueList = pmsSearchParam.getValueId();
+        if (StringUtils.isNotBlank(keyword)) {
+            if (StringUtils.isNotBlank(urlParam)) {
+                urlParam = urlParam + "&";
+            }
+            urlParam = urlParam + "keyword=" + keyword;
+        }
+        if (StringUtils.isNotBlank(catalog3Id)) {
+            if (StringUtils.isNotBlank(urlParam)) {
+                urlParam = urlParam + "&";
+            }
+            urlParam = urlParam + "catalog3Id=" + catalog3Id;
+        }
+        if (skuAttrValueList != null && skuAttrValueList.length > 0) {
+            for (String pmsSkuAttrValue : skuAttrValueList) {
+                if (delValueId != null) {
+                    if (!delValueId.equals(pmsSkuAttrValue)) {
+                        if (StringUtils.isNotBlank(urlParam)) {
+                            urlParam = urlParam + "&";
+                        }
+                        urlParam = urlParam + "valueId=" + pmsSkuAttrValue;
+                    }
+                }
             }
         }
         return urlParam;
