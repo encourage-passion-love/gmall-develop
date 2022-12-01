@@ -89,11 +89,11 @@ public class SearchServiceImpl  implements SkuSearchService {
             TermQueryBuilder termQueryBuilder = new TermQueryBuilder("catalog3Id",pmsSearchParam.getCatalog3Id());
             boolQueryBuilder.filter(termQueryBuilder);
         }
-        if(pmsSearchParam.getSkuAttrValueList()!=null&&pmsSearchParam.getSkuAttrValueList().size()>0)
+        if(pmsSearchParam.getValueId()!=null&&pmsSearchParam.getValueId().length>0)
         {
-            List<PmsSkuAttrValue> skuAttrValueList = pmsSearchParam.getSkuAttrValueList();
-            for (PmsSkuAttrValue pmsSkuAttrValue : skuAttrValueList) {
-                TermQueryBuilder termQueryBuilder = new TermQueryBuilder("skuAttrValueList.valueId", pmsSkuAttrValue.getValueId());
+            String[] skuAttrValueList = pmsSearchParam.getValueId();
+            for (String pmsSkuAttrValue : skuAttrValueList) {
+                TermQueryBuilder termQueryBuilder = new TermQueryBuilder("skuAttrValueList.valueId", pmsSkuAttrValue);
                 boolQueryBuilder.filter(termQueryBuilder);
             }
         }
