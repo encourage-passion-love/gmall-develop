@@ -29,9 +29,12 @@
 
     <select id="getBaseAttrListBySkuValueIds" parameterType="string"
             resultMap="getBaseAttrsBySkuVIds">
-        select pbai.*,pbav.*,pbav.id as pbav_id,pbai.id as pbai_id
+        select pbav.id as pbav_id,pbai.id as pbai_id,pbai.*,pbav.*
           from pms_base_attr_info pbai,pms_base_attr_value pbav
-        where pbai.id=pbav.attr_id and pbav.id in('${vIds}')
+        where
+             pbai.id=pbav.attr_id
+        and
+             pbav.id in(${vIds})
     </select>
 
     <resultMap id="getBaseAttrsBySkuVIds" autoMapping="true"
@@ -41,6 +44,7 @@
                     ofType="com.xfp.gmall.manager.bean.PmsBaseAttrValue">
             <result column="pbav_id" property="id"></result>
         </collection>
+
     </resultMap>
 
 
