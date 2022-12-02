@@ -94,6 +94,7 @@ public class CartController {
                 omsCartItem.setCreateDate(new Date());
                 omsCartItem.setMemberNickname("admin1");
                 omsCartItem.setMemberId(memberId);
+                omsCartItem.setProductId(skuInfo.getSpuId());
                 omsCartItems.add(omsCartItem);
                 cartItemService.saveCartItemToDB(omsCartItem);
             }
@@ -102,6 +103,7 @@ public class CartController {
                 omsCartFromDb.setPrice(omsCartFromDb.getPrice().add(omsCartItem.getPrice()));
                 omsCartFromDb.setQuantity(omsCartFromDb.getQuantity()+omsCartItem.getQuantity());
                 omsCartFromDb.setModifyDate(new Date());
+                omsCartFromDb.setProductId(skuInfo.getSpuId());
                 omsCartItems.add(omsCartFromDb);
                 cartItemService.updateCartItemBySkuId(omsCartFromDb);
             }
