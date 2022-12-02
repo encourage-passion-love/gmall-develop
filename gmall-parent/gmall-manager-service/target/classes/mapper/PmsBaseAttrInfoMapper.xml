@@ -5,8 +5,8 @@
 <mapper namespace="com.xfp.gmall.manager.mapper.PmsBaseAttrInfoMapper">
 
 
-<select id="attrInfoList" parameterType="string"
-        resultType="com.xfp.gmall.manager.bean.PmsBaseAttrInfo">
+    <select id="attrInfoList" parameterType="string"
+            resultType="com.xfp.gmall.manager.bean.PmsBaseAttrInfo">
     select pai.*  from pms_base_attr_info pai
     where pai.catalog3_id=#{catalog3Id}
 </select>
@@ -26,6 +26,26 @@
     <select id="baseSaleAttrList" resultType="com.xfp.gmall.manager.bean.PmsBaseSaleAttr">
         select paa.* from pms_base_sale_attr paa
     </select>
+
+    <select id="getBaseAttrListBySkuValueIds" parameterType="string"
+            resultMap="getBaseAttrsBySkuVIds">
+        select pbav.id as pbav_id,pbai.id as pbai_id,pbai.*,pbav.*
+          from pms_base_attr_info pbai,pms_base_attr_value pbav
+        where
+             pbai.id=pbav.attr_id
+        and
+             pbav.id in(${vIds})
+    </select>
+
+    <resultMap id="getBaseAttrsBySkuVIds" autoMapping="true"
+               type="com.xfp.gmall.manager.bean.PmsBaseAttrInfo">
+        <result column="pbai_id" property="id"></result>
+        <collection property="attrValueList" autoMapping="true"
+                    ofType="com.xfp.gmall.manager.bean.PmsBaseAttrValue">
+            <result column="pbav_id" property="id"></result>
+        </collection>
+
+    </resultMap>
 
 
 </mapper>

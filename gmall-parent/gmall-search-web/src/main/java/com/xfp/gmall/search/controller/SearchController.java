@@ -2,10 +2,10 @@ package com.xfp.gmall.search.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.xfp.gmall.manager.bean.*;
-import com.xfp.gmall.manager.service.SkuSearchService;
 import com.xfp.gmall.manager.service.SkuService;
+import com.xfp.gmall.manager.bean.*;
+import com.xfp.gmall.manager.service.SkuSearchService;
 import io.searchbox.client.JestClient;
-import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Index;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import java.util.*;
 
 @Controller
 public class SearchController {
+
     @Reference
     private SkuSearchService skuSearchService;
     @Autowired

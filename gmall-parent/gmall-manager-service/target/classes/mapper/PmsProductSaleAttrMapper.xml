@@ -18,5 +18,33 @@
         where ppsa.product_id=#{spuId}
     </select>
 
+    <!--
+     public List<PmsProductSaleAttr> (Map map);
+    -->
+    <select id="findPmsProductSaleAttrBySpuIdAndSkuId" parameterType="map"
+    resultMap="pmsSaleAttrMap">
+    SELECT
+	sa.id as sa_id,sav.id sav_id,
+	sa.*,sav.*,if( ssav.sku_id IS NOT NULL, 1, 0 ) AS isChecked
+
+FROM
+	pms_product_sale_attr sa
+	INNER JOIN pms_product_sale_attr_value sav ON sa.sale_attr_id = sav.sale_attr_id
+	AND sa.product_id = sav.product_id
+	AND sa.product_id = #{spuId}
+	LEFT JOIN pms_sku_sale_attr_value ssav ON ssav.sale_attr_id = sa.sale_attr_id
+	AND ssav.sale_attr_value_id = sav.id
+	AND ssav.sku_id = #{skuId}
+ORDER BY
+	sav.sale_attr_id
+    </select>
+
+    <resultMap id="pmsSaleAttrMap" type="com.xfp.gmall.manager.bean.PmsProductSaleAttr" autoMapping="true">
+        <result column="sa_id" property="id"></result>
+        <collection property="spuSaleAttrValueList" autoMapping="true"
+                    ofType="com.xfp.gmall.manager.bean.PmsProductSaleAttrValue">
+            <result property="id" column="sav_id"></result>
+        </collection>
+    </resultMap>
 
 </mapper>

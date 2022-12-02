@@ -7,7 +7,7 @@ import com.xfp.gmall.manager.bean.PmsBaseSaleAttr;
 import java.util.List;
 
 public interface PmsAttrService {
-    List<PmsBaseAttrInfo> attrInfoList( String catalog3Id);
+    List<PmsBaseAttrInfo> attrInfoList(String catalog3Id);
     void saveAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo);
     public List<PmsBaseAttrValue> getAttrValueList(String attrId);
     public void deleteAttrValueByAttrId(String attrId);

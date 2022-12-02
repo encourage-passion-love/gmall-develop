@@ -2,9 +2,9 @@ package com.xfp.gmall.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.xfp.gmall.manager.bean.PmsBaseCatalog1;
+import com.xfp.gmall.manager.service.CatelogService;
 import com.xfp.gmall.manager.bean.PmsBaseCatalog2;
 import com.xfp.gmall.manager.bean.PmsBaseCatalog3;
-import com.xfp.gmall.manager.service.CatelogService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

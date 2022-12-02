@@ -1,6 +1,7 @@
 com\xfp\gmall\manager\bean\PmsBaseSaleAttr.class
 com\xfp\gmall\user\bean\OmsOrder.class
 com\xfp\gmall\user\bean\UmsMemberReceiveAddress.class
+com\xfp\gmall\config\RedisConfig.class
 com\xfp\gmall\user\service\UserService.class
 com\xfp\gmall\user\bean\OmsCompanyAddress.class
 com\xfp\gmall\manager\bean\PmsBaseAttrInfo.class
@@ -8,10 +9,13 @@ com\xfp\gmall\manager\service\SkuService.class
 com\xfp\gmall\manager\bean\PmsSkuImage.class
 com\xfp\gmall\manager\bean\PmsBaseCatalog1.class
 com\xfp\gmall\manager\service\CatelogService.class
+com\xfp\gmall\manager\service\SkuSearchService.class
 com\xfp\gmall\manager\bean\PmsProductSaleAttr.class
 com\xfp\gmall\manager\bean\PmsBaseCatalog3.class
+com\xfp\gmall\manager\bean\PmsSearchParam.class
 com\xfp\gmall\manager\bean\PmsBaseAttrValue.class
 com\xfp\gmall\user\bean\UmsMember.class
+com\xfp\gmall\manager\bean\PmsSearchSkuInfo.class
 com\xfp\gmall\user\bean\PaymentInfo.class
 com\xfp\gmall\manager\bean\PmsProductImage.class
 com\xfp\gmall\manager\bean\PmsSkuSaleAttrValue.class
@@ -20,8 +24,10 @@ com\xfp\gmall\user\bean\OmsOrderItem.class
 com\xfp\gmall\manager\bean\PmsSkuInfo.class
 com\xfp\gmall\manager\service\SpuService.class
 com\xfp\gmall\user\bean\OmsCartItem.class
+com\xfp\gmall\manager\bean\PmsSearchCrumb.class
 com\xfp\gmall\user\bean\PmsBrand.class
 com\xfp\gmall\manager\bean\PmsSkuAttrValue.class
+com\xfp\gmall\util\RedisUtil.class
 com\xfp\gmall\manager\bean\PmsProductInfo.class
 com\xfp\gmall\manager\bean\PmsProductSaleAttrValue.class
 com\xfp\gmall\manager\bean\PmsBaseCatalog2.class
