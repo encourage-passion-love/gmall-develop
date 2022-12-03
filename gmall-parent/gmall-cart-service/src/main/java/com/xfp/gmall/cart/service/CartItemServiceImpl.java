@@ -53,9 +53,12 @@ public class CartItemServiceImpl implements CartItemService {
         try {
             String token = UUID.randomUUID().toString();
             jedis=redisUtil.getJedis();
-            String cartStr = jedis.get("user:" + memberId + ":cart");
-            if(StringUtils.isNotBlank(cartStr)){
-                omsCartItems=JSON.parseArray(cartStr,OmsCartItem.class);
+            List<String> cartStr = jedis.hvals("user:" + memberId + ":cart");
+            if(cartStr!=null&&cartStr.size()>0){
+                for (String s : cartStr) {
+                    OmsCartItem omsCartItem = JSON.parseObject(s, OmsCartItem.class);
+                    omsCartItems.add(omsCartItem);
+                }
                 return omsCartItems;
             }else {
                 Map<String,String> map=new HashMap<>();
