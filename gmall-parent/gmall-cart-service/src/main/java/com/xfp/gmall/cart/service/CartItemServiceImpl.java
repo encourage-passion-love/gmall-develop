@@ -101,8 +101,7 @@ public class CartItemServiceImpl implements CartItemService {
         criteria.andEqualTo("productSkuId",omsCartItem.getProductSkuId())
                 .andEqualTo("memberId",omsCartItem.getMemberId());
         cartItemMapper.updateByExampleSelective(omsCartItem,example);
-        Example exam=new Example(OmsCartItem.class);
-        OmsCartItem cartItem = cartItemMapper.selectOneByExample(criteria);
+        OmsCartItem cartItem = cartItemMapper.selectOneByExample(example);
         if(cartItem!=null){
             Jedis jedis =null;
             try {
