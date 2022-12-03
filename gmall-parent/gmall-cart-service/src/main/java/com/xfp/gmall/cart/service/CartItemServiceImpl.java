@@ -72,6 +72,7 @@ public class CartItemServiceImpl implements CartItemService {
                         for (OmsCartItem omsCartItem : omsCartItems) {
                             map.put(omsCartItem.getProductSkuId(),JSON.toJSONString(omsCartItem));
                         }
+                        jedis.del("user:"+memberId+":cart");
                         jedis.hmset("user:"+memberId+":cart",map);
                     }else {
                         jedis.hmset("user:"+memberId+":cart",map);
@@ -91,5 +92,37 @@ public class CartItemServiceImpl implements CartItemService {
             jedis.close();
         }
         return omsCartItems;
+    }
+
+    @Override
+    public void checkCart(OmsCartItem omsCartItem) {
+        Example example=new Example(OmsCartItem.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("productSkuId",omsCartItem.getProductSkuId())
+                .andEqualTo("memberId",omsCartItem.getMemberId());
+        cartItemMapper.updateByExampleSelective(omsCartItem,example);
+    }
+
+    @Override
+    public void flushCartItemCache(List<OmsCartItem> cartItemByMemberId) {
+        //说明集合里面有元素了
+        //先删除缓存中的数据
+        //再向里面添加数据
+        Jedis jedis =null;
+       try {
+           String memberId = cartItemByMemberId.get(0).getMemberId();
+           Map<String,String> map=new HashMap<>();
+           jedis=redisUtil.getJedis();
+           for (OmsCartItem omsCartItem : cartItemByMemberId) {
+            map.put(omsCartItem.getProductSkuId(),JSON.toJSONString(omsCartItem));
+           }
+           jedis.del("user:"+memberId+":cart");
+           jedis.hmset("user:"+memberId+":cart",map);
+       }catch (Exception e){
+           e.printStackTrace();
+           jedis.close();
+       }finally {
+           jedis.close();
+       }
     }
 }
