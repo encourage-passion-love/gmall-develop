@@ -130,10 +130,9 @@ public class CartController {
         Cookie cookie = new Cookie("cartListCookie", "");
         if (StringUtils.isNotBlank(memberId)) {
             omsCartItems = cartItemService.getCartItemByMemberId(memberId);
-            if (omsCartItems.size() > 0) {
+            if (omsCartItems!=null&&omsCartItems.size() > 0) {
                 for (OmsCartItem omsCartItem : omsCartItems) {
                     omsCartItem.setTotalPrice(omsCartItem.getPrice().multiply(new BigDecimal(omsCartItem.getQuantity())).doubleValue());
-                    omsCartItems.add(omsCartItem);
                 }
             }
         } else {
@@ -154,7 +153,7 @@ public class CartController {
             }
         }
         modelMap.put("cartList", omsCartItems);
-        return "cartList.html";
+        return "cartList";
     }
 
 
