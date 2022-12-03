@@ -101,13 +101,25 @@ public class CartItemServiceImpl implements CartItemService {
         criteria.andEqualTo("productSkuId",omsCartItem.getProductSkuId())
                 .andEqualTo("memberId",omsCartItem.getMemberId());
         cartItemMapper.updateByExampleSelective(omsCartItem,example);
+        Example exam=new Example(OmsCartItem.class);
+        OmsCartItem cartItem = cartItemMapper.selectOneByExample(criteria);
+        if(cartItem!=null){
+            Jedis jedis =null;
+            try {
+                 jedis=redisUtil.getJedis();
+                 jedis.hdel("user:"+omsCartItem.getMemberId()+":cart",omsCartItem.getProductSkuId());
+                 jedis.hset("user:"+omsCartItem.getMemberId()+":cart",omsCartItem.getProductSkuId(),JSON.toJSONString(cartItem));
+            }catch (Exception e){
+                e.printStackTrace();
+                jedis.close();
+            }finally {
+                jedis.close();
+            }
+        }
     }
 
     @Override
     public void flushCartItemCache(List<OmsCartItem> cartItemByMemberId) {
-        //说明集合里面有元素了
-        //先删除缓存中的数据
-        //再向里面添加数据
         Jedis jedis =null;
        try {
            String memberId = cartItemByMemberId.get(0).getMemberId();

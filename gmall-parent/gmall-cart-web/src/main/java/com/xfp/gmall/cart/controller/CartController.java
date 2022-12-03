@@ -47,6 +47,7 @@ public class CartController {
         omsCartItem.setQuantity(quantity);
         omsCartItem.setProductName(skuInfo.getSkuName());
         omsCartItem.setProductPic(skuInfo.getSkuDefaultImg());
+        omsCartItem.setIsChecked("1");
         String memberId = "1";
         if (StringUtils.isBlank(memberId)) {
             Cookie[] cookies = request.getCookies();
@@ -162,17 +163,12 @@ public class CartController {
         List<OmsCartItem> omsCartItems=new ArrayList<>();
         String memberId="1";
         OmsCartItem omsCartItem=new OmsCartItem();
-        //根据所给数据进行更新当前的购物车选项
-        //根据数据库里面的购物车信息同步到缓存里面
-        //删除原来缓存里面的信息
         omsCartItem.setMemberId(memberId);
         omsCartItem.setProductSkuId(skuId);
         omsCartItem.setIsChecked(isChecked);
         cartItemService.checkCart(omsCartItem);
-        //需要根据memberId查询当前用户在数据库里面的购物车
         List<OmsCartItem> cartItemByMemberId = cartItemService.getCartItemByMemberId(memberId);
         if(cartItemByMemberId!=null&&cartItemByMemberId.size()>0){
-            //数据库有数据同步到缓存里面去
             cartItemService.flushCartItemCache(cartItemByMemberId);
             for (OmsCartItem cartItem : cartItemByMemberId) {
                 cartItem.setTotalPrice(cartItem.getPrice().multiply(new BigDecimal(cartItem.getQuantity())).doubleValue());
@@ -180,7 +176,7 @@ public class CartController {
             }
         }
         modelMap.put("cartList",omsCartItems);
-        return "cartListInner.html";
+        return "cartListInner";
     }
 
 
