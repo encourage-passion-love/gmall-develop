@@ -1,6 +1,7 @@
 package com.xfp.gmall.cart.bean;
 
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -28,6 +29,25 @@ public class OmsCartItem implements Serializable {
     private String productBrand;
     private String productSn;
     private String productAttr;
+    @Transient
+    private Double totalPrice;
+    private String isChecked;
+
+    public String getIsChecked() {
+        return isChecked;
+    }
+
+    public void setIsChecked(String isChecked) {
+        this.isChecked = isChecked;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     public String getId() {
         return id;
