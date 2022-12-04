@@ -153,9 +153,25 @@ public class CartController {
                 response.addCookie(cookie);
             }
         }
+        BigDecimal totalAmount=new BigDecimal("0");
+        if(omsCartItems.size()>0){
+            totalAmount= getCartItemTotalAmount(omsCartItems);
+        }
         modelMap.put("cartList", omsCartItems);
+        modelMap.put("totalAmount",totalAmount);
         return "cartList";
     }
+
+    private BigDecimal getCartItemTotalAmount(List<OmsCartItem> omsCartItems) {
+        BigDecimal totalAmount=new BigDecimal("0");
+        for (OmsCartItem omsCartItem : omsCartItems) {
+            if(omsCartItem.getIsChecked().equals("1")){
+                totalAmount=totalAmount.add(new BigDecimal(+omsCartItem.getTotalPrice()));
+            }
+        }
+        return totalAmount;
+    }
+
     @RequestMapping("/checkCart")
     public String checkCart(String skuId,String isChecked,HttpServletResponse response,
                             HttpServletRequest request,ModelMap modelMap)
@@ -175,7 +191,12 @@ public class CartController {
                 omsCartItems.add(cartItem);
             }
         }
+        BigDecimal totalAmount=new BigDecimal("0");
+        if(omsCartItems.size()>0){
+            totalAmount= getCartItemTotalAmount(omsCartItems);
+        }
         modelMap.put("cartList",omsCartItems);
+        modelMap.put("totalAmount",totalAmount);
         return "cartListInner";
     }
 
