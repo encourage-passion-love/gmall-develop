@@ -2,6 +2,7 @@ package com.xfp.gmall.cart.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
+import com.xfp.gmall.cart.annoations.LoginRequired;
 import com.xfp.gmall.cart.bean.OmsCartItem;
 import com.xfp.gmall.cart.service.CartItemService;
 import com.xfp.gmall.manager.bean.PmsSkuInfo;
@@ -34,6 +35,7 @@ public class CartController {
     private RedisUtil redisUtil;
 
     @RequestMapping("/addToCart")
+    @LoginRequired(loginSuccess = false)
     public String addToCart(HttpServletRequest request, HttpServletResponse response
             , String skuId, int quantity) throws Exception {
         PmsSkuInfo skuInfo = skuService.findSkuInfoById(skuId);
@@ -49,7 +51,8 @@ public class CartController {
         omsCartItem.setProductPic(skuInfo.getSkuDefaultImg());
         omsCartItem.setIsChecked("1");
         String memberId = "1";
-        if (StringUtils.isBlank(memberId)) {
+        String memberId1 = (String) request.getAttribute("memberId");
+        if (StringUtils.isBlank(memberId1)) {
             Cookie[] cookies = request.getCookies();
             Cookie cookie1 = null;
             if (cookies != null && cookies.length > 0) {
@@ -125,6 +128,7 @@ public class CartController {
     }
 
     @RequestMapping("/cartList")
+    @LoginRequired(loginSuccess = false)
     public String cartList(HttpServletResponse response, HttpServletRequest request, ModelMap modelMap) throws UnsupportedEncodingException {
         List<OmsCartItem> omsCartItems = new ArrayList<>();
         String memberId = "1";
@@ -173,6 +177,7 @@ public class CartController {
     }
 
     @RequestMapping("/checkCart")
+    @LoginRequired(loginSuccess = false)
     public String checkCart(String skuId,String isChecked,HttpServletResponse response,
                             HttpServletRequest request,ModelMap modelMap)
     {
@@ -199,6 +204,16 @@ public class CartController {
         modelMap.put("totalAmount",totalAmount);
         return "cartListInner";
     }
+    @RequestMapping("/toTrade")
+    @LoginRequired(loginSuccess = true)
+    public String toTrade(HttpServletRequest request,HttpServletResponse response,ModelMap map){
+        //这个地方不适用toString方法了 因为获取的如果是空null的话
+        //调用这个方法会报空指针异常
+        String memberId = (String) request.getAttribute("memberId");
+        String nickname = (String) request.getAttribute("nickname");
+        return "toTrade";
+    }
+
 
 
 
