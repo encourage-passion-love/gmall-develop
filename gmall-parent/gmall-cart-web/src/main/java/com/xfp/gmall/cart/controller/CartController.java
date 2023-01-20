@@ -50,9 +50,9 @@ public class CartController {
         omsCartItem.setProductName(skuInfo.getSkuName());
         omsCartItem.setProductPic(skuInfo.getSkuDefaultImg());
         omsCartItem.setIsChecked("1");
-        String memberId = "1";
-        String memberId1 = (String) request.getAttribute("memberId");
-        if (StringUtils.isBlank(memberId1)) {
+        String memberId = (String) request.getAttribute("memberId");
+        String nickname = (String) request.getAttribute("nickname");
+        if (StringUtils.isBlank(memberId)) {
             Cookie[] cookies = request.getCookies();
             Cookie cookie1 = null;
             if (cookies != null && cookies.length > 0) {
@@ -131,7 +131,8 @@ public class CartController {
     @LoginRequired(loginSuccess = false)
     public String cartList(HttpServletResponse response, HttpServletRequest request, ModelMap modelMap) throws UnsupportedEncodingException {
         List<OmsCartItem> omsCartItems = new ArrayList<>();
-        String memberId = "1";
+        String memberId = (String) request.getAttribute("memberId");
+        String nickname = (String) request.getAttribute("nickname");
         Cookie cookie = new Cookie("cartListCookie", "");
         if (StringUtils.isNotBlank(memberId)) {
             omsCartItems = cartItemService.getCartItemByMemberId(memberId);
@@ -182,7 +183,8 @@ public class CartController {
                             HttpServletRequest request,ModelMap modelMap)
     {
         List<OmsCartItem> omsCartItems=new ArrayList<>();
-        String memberId="1";
+        String memberId = (String) request.getAttribute("memberId");
+        String nickname = (String) request.getAttribute("nickname");
         OmsCartItem omsCartItem=new OmsCartItem();
         omsCartItem.setMemberId(memberId);
         omsCartItem.setProductSkuId(skuId);
