@@ -54,17 +54,22 @@ public class HandlerInterceptorCart extends HandlerInterceptorAdapter {
              //验证通过
             request.setAttribute("memberId", "1");
             request.setAttribute("nickname", "admin");
+            if(StringUtils.isNotBlank(token)){
+                cookie.setMaxAge(60*60*2);
+                cookie.setValue(token);//进行cookie的覆盖
+                response.addCookie(cookie);
+            }
         } else {
             //验证没有通过也可以进行使用
             if (!success.equals("success")) {
                 request.setAttribute("memberId", "1");
                 request.setAttribute("nickname", "admin");
             }
-        }
-        if(StringUtils.isNotBlank(token)){
-            cookie.setMaxAge(60*60*2);
-            cookie.setValue(token);//进行cookie的覆盖
-            response.addCookie(cookie);
+            if(StringUtils.isNotBlank(token)){
+                cookie.setMaxAge(60*60*2);
+                cookie.setValue(token);//进行cookie的覆盖
+                response.addCookie(cookie);
+            }
         }
         return true;
     }
