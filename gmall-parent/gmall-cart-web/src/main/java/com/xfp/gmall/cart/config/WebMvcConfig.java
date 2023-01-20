@@ -13,7 +13,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(handlerInterceptorCart).addPathPatterns("/**");
+        registry.addInterceptor(handlerInterceptorCart).addPathPatterns("/**").excludePathPatterns("/error");
         super.addInterceptors(registry);
     }
 }
