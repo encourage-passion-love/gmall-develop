@@ -1,5 +1,6 @@
 package com.xfp.gmall.cart.interceptors;
 
+import com.alibaba.fastjson.JSON;
 import com.xfp.gmall.cart.annoations.LoginRequired;
 import com.xfp.gmall.cart.util.HttpClientUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @Component
 public class HandlerInterceptorCart extends HandlerInterceptorAdapter {
@@ -46,7 +48,8 @@ public class HandlerInterceptorCart extends HandlerInterceptorAdapter {
         if(StringUtils.isNotBlank(token)){
             success = HttpClientUtil.doGet("http://localhost:8085/verify?token=" + token+"&currentIp="+ip);
         }
-
+        Map successMap = JSON.parseObject(success, Map.class);
+        success= (String) successMap.get("status");
         boolean loginSuccess = annotation.loginSuccess();
         if (loginSuccess) {
             if (!success.equals("success")) {
