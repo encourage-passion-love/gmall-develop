@@ -28,6 +28,10 @@ public class HandlerInterceptorCart extends HandlerInterceptorAdapter {
                 cookie = cookie1;
             }
         }
+        String ip = request.getHeader("x-forwarded-for");
+        if(StringUtils.isBlank(ip)){
+            ip=request.getRemoteAddr();
+        }
         String token = "";
         String oldToken = cookie.getValue();
         if (StringUtils.isNotBlank(oldToken)) {
@@ -40,7 +44,7 @@ public class HandlerInterceptorCart extends HandlerInterceptorAdapter {
         //下面判断是否登录过系统
         String success="";
         if(StringUtils.isNotBlank(token)){
-            success = HttpClientUtil.doGet("http://localhost:8085/verify?token=" + token);
+            success = HttpClientUtil.doGet("http://localhost:8085/verify?token=" + token+"&currentIp="+ip);
         }
 
         boolean loginSuccess = annotation.loginSuccess();
