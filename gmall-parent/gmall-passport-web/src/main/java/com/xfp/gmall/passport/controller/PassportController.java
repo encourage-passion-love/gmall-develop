@@ -2,6 +2,7 @@ package com.xfp.gmall.passport.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.xfp.gmall.passport.service.UserService;
+import com.xfp.gmall.passport.utils.HttpClientUtil;
 import com.xfp.gmall.user.bean.UmsMember;
 import com.xfp.gmall.utils.JwtUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -20,6 +21,36 @@ public class PassportController {
 
     @Autowired
     private UserService userService;
+
+
+    @RequestMapping("/vlogin")
+    @ResponseBody
+    public String vlogin(String code,HttpServletRequest request){
+        String s3="https://api.weibo.com/oauth2/access_token";
+        Map<String,String> paramMap=new HashMap<>();
+        paramMap.put("client_id","w3232323232");
+        paramMap.put("client_secret","dsuidsdius78ds8d8s78");
+        paramMap.put("grant_type","authorization_code");
+        paramMap.put("redirect_uri","http://localhost:8085/vlogin");
+        paramMap.put("code",code);
+        String doPost = HttpClientUtil.doPost(s3, paramMap);
+        Map parseObject = JSON.parseObject(doPost, Map.class);
+        String access_token = (String) parseObject.get("access_token");
+        String uid = (String) parseObject.get("uid");
+        String s4="https://api.weibo.com/2/users/show.json?access_token="+access_token+"&uid="+uid;
+        String userInfo = HttpClientUtil.doGet(s4);
+        Map userInfoMap = JSON.parseObject(userInfo, Map.class);
+        UmsMember umsMember = new UmsMember();
+        umsMember.setSourceType(2);
+        umsMember.setAccessCode(code);
+        umsMember.setAccessToken(access_token);
+        umsMember.setSourceUid( Long.parseLong((String)userInfoMap.get("id")));
+        umsMember.setNickname((String)userInfoMap.get("screen_name"));
+        umsMember.setCity((String)userInfoMap.get("location"));
+        umsMember.setGender(Integer.valueOf((String)userInfoMap.get("gender")));
+        userService.addOAuthUser(umsMember);
+        return null;
+    }
 
     @RequestMapping("/login")
     @ResponseBody
