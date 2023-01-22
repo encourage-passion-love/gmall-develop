@@ -8,24 +8,53 @@ public class UmsMember implements Serializable {
 
     @Id
     private String id;
-    private String         memberLevelId;
+    private String memberLevelId;
     private String username;
-    private String         password;
+    private String password;
     private String nickname;
-    private String         phone;
+    private String phone;
     private int status;
     private Date createTime;
     private String icon;
-    private int         gender;
+    private int gender;
     private Date birthday;
-    private String        city;
+    private String city;
     private String job;
-    private String         personalizedSignature;
+    private String personalizedSignature;
     private int sourceType;
-    private int         integration;
+    private int integration;
     private int growth;
-    private int         luckeyCount;
+    private int luckeyCount;
     private int historyIntegration;
+    private long sourceUid;
+    private String accessToken;
+    private String accessCode;
+
+    public String getAccessCode() {
+        return accessCode;
+    }
+
+    public void setAccessCode(String accessCode) {
+        this.accessCode = accessCode;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public long getSourceUid() {
+        return sourceUid;
+    }
+
+    public void setSourceUid(long sourceUid) {
+        this.sourceUid = sourceUid;
+    }
+
+
 
     public String getId() {
         return id;
