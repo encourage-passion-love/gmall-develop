@@ -15,5 +15,13 @@
         select user.* from ums_member user where
         username=#{username} and password=#{password}
     </select>
+    <!--
+    void insertOAuthUser(UmsMember umsMember);
+    -->
+    <insert id="insertOAuthUser" parameterType="com.xfp.gmall.user.bean.UmsMember">
+        insert into
+        ums_member(source_type,access_code,source_uid,access_token,nick_name,gender,city)
+        values(#{sourceType},#{accessCode},#{sourceUid},#{accessToken},#{nickName},#{gender},#{city})
+    </insert>
 
 </mapper>
