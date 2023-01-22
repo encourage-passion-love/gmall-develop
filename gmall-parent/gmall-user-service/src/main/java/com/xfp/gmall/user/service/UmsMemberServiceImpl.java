@@ -62,6 +62,11 @@ public class UmsMemberServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public void addOAuthUser(UmsMember umsMember) {
+        userMapper.insertOAuthUser(umsMember);
+    }
+
     private UmsMember loginFromDB(UmsMember umsMember) {
         UmsMember selectByUsernameAndPassword = userMapper.selectByUsernameAndPassword(umsMember);
         return selectByUsernameAndPassword;
