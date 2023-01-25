@@ -1,4 +1,4 @@
-package com.xfp.gmall.config;
+package com.xfp.gmall.order.config;
 
 import com.xfp.gmall.order.interceptors.HandlerInterceptorCart;
 import org.springframework.beans.factory.annotation.Autowired;
