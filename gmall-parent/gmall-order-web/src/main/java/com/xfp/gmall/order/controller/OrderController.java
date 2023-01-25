@@ -13,10 +13,11 @@ public class OrderController {
     @RequestMapping("/toTrade")
     @LoginRequired(loginSuccess = true)
     public String toTrade(HttpServletRequest request, HttpServletResponse response, ModelMap map){
-        //这个地方不适用toString方法了 因为获取的如果是空null的话
-        //调用这个方法会报空指针异常
         String memberId = (String) request.getAttribute("memberId");
         String nickname = (String) request.getAttribute("nickname");
-        return "toTrade";
+        //每一个购物车项信息对应一个订单项信息
+        //从缓存里面把信息取出来
+        //使用ModelMap进行封装订单项信息就可以
+        return "trade";
     }
 }
