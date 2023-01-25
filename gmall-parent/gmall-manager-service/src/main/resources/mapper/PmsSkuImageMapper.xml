@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfp.gmall.manager.mapper.PmsSkuImageMapper">
+<mapper namespace="com.xfp.gmall.order.manager.mapper.PmsSkuImageMapper">
 
     <insert id="saveSkuImages" parameterType="com.xfp.gmall.manager.bean.PmsSkuImage">
         insert into pms_sku_image(product_img_id,img_name,img_url,is_default,sku_id)

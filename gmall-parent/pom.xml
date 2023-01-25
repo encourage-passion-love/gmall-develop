@@ -52,6 +52,7 @@
         <module>gmall-cart-web</module>
         <module>gmall-passport-web</module>
         <module>gmall-web-util</module>
+        <module>gmall-order-web</module>
     </modules>
     <dependencyManagement>
 

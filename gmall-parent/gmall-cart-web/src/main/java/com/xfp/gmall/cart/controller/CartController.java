@@ -206,15 +206,7 @@ public class CartController {
         modelMap.put("totalAmount",totalAmount);
         return "cartListInner";
     }
-    @RequestMapping("/toTrade")
-    @LoginRequired(loginSuccess = true)
-    public String toTrade(HttpServletRequest request,HttpServletResponse response,ModelMap map){
-        //这个地方不适用toString方法了 因为获取的如果是空null的话
-        //调用这个方法会报空指针异常
-        String memberId = (String) request.getAttribute("memberId");
-        String nickname = (String) request.getAttribute("nickname");
-        return "toTrade";
-    }
+
 
 
 

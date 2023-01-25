@@ -1,7 +1,6 @@
 package com.xfp.gmall.manager.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class PmsSearchParam implements Serializable {
     private String catalog3Id;
