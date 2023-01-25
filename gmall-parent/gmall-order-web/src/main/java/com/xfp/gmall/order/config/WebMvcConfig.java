@@ -1,6 +1,6 @@
 package com.xfp.gmall.order.config;
 
-import com.xfp.gmall.order.interceptors.HandlerInterceptorCart;
+import com.xfp.gmall.order.interceptors.HandlerInterceptorOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -10,11 +10,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
-    private HandlerInterceptorCart handlerInterceptorCart;
+    private HandlerInterceptorOrder handlerInterceptorOrder;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(handlerInterceptorCart).addPathPatterns("/**").excludePathPatterns("/error");
+        registry.addInterceptor(handlerInterceptorOrder).addPathPatterns("/**").excludePathPatterns("/error");
         super.addInterceptors(registry);
     }
 }
