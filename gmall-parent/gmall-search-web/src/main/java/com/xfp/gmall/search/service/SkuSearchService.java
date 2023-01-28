@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.search.service;
+package com.xfp.gmall.search.service;
 import com.xfp.gmall.manager.bean.PmsSearchParam;
 import com.xfp.gmall.manager.bean.PmsSearchSkuInfo;
 

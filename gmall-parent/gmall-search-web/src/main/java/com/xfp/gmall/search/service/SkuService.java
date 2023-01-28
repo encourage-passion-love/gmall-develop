@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.search.service;
+package com.xfp.gmall.search.service;
 
 import com.xfp.gmall.manager.bean.PmsBaseAttrInfo;
 import com.xfp.gmall.manager.bean.PmsSkuInfo;
