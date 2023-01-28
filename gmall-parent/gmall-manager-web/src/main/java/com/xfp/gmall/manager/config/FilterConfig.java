@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.manager.config;
+package com.xfp.gmall.manager.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

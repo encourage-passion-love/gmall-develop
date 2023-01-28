@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.manager.controller;
+package com.xfp.gmall.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.xfp.gmall.manager.bean.PmsBaseCatalog1;

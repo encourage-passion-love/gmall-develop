@@ -1,6 +1,6 @@
-package com.xfp.gmall.order.manager.config;
+package com.xfp.gmall.manager.config;
 
-import com.xfp.gmall.order.manager.controller.SpuController;
+import com.xfp.gmall.manager.controller.SpuController;
 import org.csource.common.MyException;
 import org.csource.fastdfs.ClientGlobal;
 import org.csource.fastdfs.StorageClient;
