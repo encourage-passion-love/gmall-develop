@@ -1,5 +1,6 @@
 com\xfp\gmall\manager\mapper\PmsProductInfoMapper.class
 com\xfp\gmall\manager\mapper\PmsSkuInfoMapper.class
+com\xfp\gmall\order\GMallManagerServiceApp.class
 com\xfp\gmall\manager\mapper\SpuMapper.class
 com\xfp\gmall\manager\mapper\PmsBaseAttrValueMapper.class
 com\xfp\gmall\manager\mapper\PmsSkuImageMapper.class
@@ -10,10 +11,10 @@ com\xfp\gmall\manager\mapper\PmsProductImageMapper.class
 com\xfp\gmall\manager\service\SkuServiceImpl.class
 com\xfp\gmall\manager\service\SpuServiceImpl.class
 com\xfp\gmall\manager\service\PmsAttrServiceImpl.class
-com\xfp\gmall\GMallManagerServiceApp.class
 com\xfp\gmall\manager\service\CatelogServiceImpl.class
 com\xfp\gmall\manager\mapper\Catelog3Mapper.class
 com\xfp\gmall\manager\mapper\PmsSkuAttrValueMapper.class
 com\xfp\gmall\manager\mapper\Catelog2Mapper.class
 com\xfp\gmall\manager\mapper\PmsProductSaleAttrMapper.class
+com\xfp\gmall\manager\GmallManagerApp.class
 com\xfp\gmall\manager\mapper\Catelog1Mapper.class

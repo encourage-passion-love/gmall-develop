@@ -1,4 +1,4 @@
-com\xfp\gmall\item\service\SpuService.class
-com\xfp\gmall\item\controller\IndexController.class
-com\xfp\gmall\item\GMallItemWebApp.class
-com\xfp\gmall\item\service\SkuService.class
+com\xfp\gmall\order\item\GMallItemWebApp.class
+com\xfp\gmall\order\item\service\SpuService.class
+com\xfp\gmall\order\item\service\SkuService.class
+com\xfp\gmall\order\item\controller\IndexController.class

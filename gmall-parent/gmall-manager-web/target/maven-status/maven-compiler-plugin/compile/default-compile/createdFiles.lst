@@ -3,7 +3,7 @@ com\xfp\gmall\manager\config\FdfsClient.class
 com\xfp\gmall\manager\config\FilterConfig.class
 com\xfp\gmall\manager\service\SpuService.class
 com\xfp\gmall\manager\controller\SkuController.class
-com\xfp\gmall\manager\GMallManagerWebApp.class
+com\xfp\gmall\GMallManagerWebApp.class
 com\xfp\gmall\manager\controller\AttrInfoController.class
 com\xfp\gmall\manager\controller\SpuController.class
 com\xfp\gmall\manager\controller\CatelogController.class

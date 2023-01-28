@@ -1,0 +1,4 @@
+com\xfp\gmall\order\passport\service\UserService.class
+com\xfp\gmall\order\passport\GmallPassportApp.class
+com\xfp\gmall\order\passport\controller\PassportController.class
+com\xfp\gmall\order\passport\utils\HttpClientUtil.class

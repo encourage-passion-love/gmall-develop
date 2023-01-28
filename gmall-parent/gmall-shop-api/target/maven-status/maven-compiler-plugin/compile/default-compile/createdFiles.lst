@@ -13,12 +13,14 @@ com\xfp\gmall\manager\service\SkuSearchService.class
 com\xfp\gmall\manager\bean\PmsProductSaleAttr.class
 com\xfp\gmall\manager\bean\PmsBaseCatalog3.class
 com\xfp\gmall\manager\bean\PmsSearchParam.class
+com\xfp\gmall\cart\bean\OmsCartItem.class
 com\xfp\gmall\manager\bean\PmsBaseAttrValue.class
 com\xfp\gmall\user\bean\UmsMember.class
 com\xfp\gmall\manager\bean\PmsSearchSkuInfo.class
 com\xfp\gmall\user\bean\PaymentInfo.class
 com\xfp\gmall\manager\bean\PmsProductImage.class
 com\xfp\gmall\manager\bean\PmsSkuSaleAttrValue.class
+com\xfp\gmall\cart\service\CartItemService.class
 com\xfp\gmall\manager\service\PmsAttrService.class
 com\xfp\gmall\user\bean\OmsOrderItem.class
 com\xfp\gmall\manager\bean\PmsSkuInfo.class
