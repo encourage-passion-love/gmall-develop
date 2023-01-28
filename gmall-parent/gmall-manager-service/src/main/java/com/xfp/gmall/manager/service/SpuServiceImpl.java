@@ -6,7 +6,7 @@ import com.xfp.gmall.manager.bean.PmsProductInfo;
 import com.xfp.gmall.manager.bean.PmsProductSaleAttr;
 import com.xfp.gmall.manager.bean.PmsProductSaleAttrValue;
 
-import com.xfp.gmall.order.manager.mapper.*;
+import com.xfp.gmall.mapper.*;
 import com.xfp.gmall.manager.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 

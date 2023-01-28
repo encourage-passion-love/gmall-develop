@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.manager.mapper;
+package com.xfp.gmall.manager.mapper;
 
 import com.xfp.gmall.manager.bean.PmsSkuAttrValue;
 import org.apache.ibatis.annotations.Param;

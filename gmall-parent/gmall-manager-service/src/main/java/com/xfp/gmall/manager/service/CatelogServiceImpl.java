@@ -2,11 +2,11 @@ package com.xfp.gmall.manager.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.xfp.gmall.manager.bean.PmsBaseCatalog1;
-import com.xfp.gmall.order.manager.mapper.Catelog2Mapper;
+import com.xfp.gmall.manager.mapper.Catelog2Mapper;
 import com.xfp.gmall.manager.bean.PmsBaseCatalog2;
 import com.xfp.gmall.manager.bean.PmsBaseCatalog3;
-import com.xfp.gmall.order.manager.mapper.Catelog1Mapper;
-import com.xfp.gmall.order.manager.mapper.Catelog3Mapper;
+import com.xfp.gmall.manager.mapper.Catelog1Mapper;
+import com.xfp.gmall.manager.mapper.Catelog3Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
