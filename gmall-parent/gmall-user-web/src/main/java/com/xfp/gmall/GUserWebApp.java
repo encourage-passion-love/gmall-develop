@@ -1,4 +1,4 @@
-package com.xfp.gmall.order;
+package com.xfp.gmall;
 
 
 import org.springframework.boot.SpringApplication;
