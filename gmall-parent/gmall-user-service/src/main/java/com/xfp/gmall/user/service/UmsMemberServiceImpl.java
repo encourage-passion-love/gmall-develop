@@ -2,7 +2,7 @@ package com.xfp.gmall.user.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
-import com.xfp.gmall.util.RedisUtil;
+import com.xfp.gmall.order.util.RedisUtil;
 import com.xfp.gmall.user.bean.UmsMember;
 import com.xfp.gmall.user.bean.UmsMemberReceiveAddress;
 import com.xfp.gmall.user.mapper.UmsMemberReceiveAddressMapper;
