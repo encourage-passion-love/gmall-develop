@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.search;
+package com.xfp.gmall.search;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

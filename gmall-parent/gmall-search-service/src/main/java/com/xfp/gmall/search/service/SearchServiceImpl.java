@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.search.service;
+package com.xfp.gmall.search.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
