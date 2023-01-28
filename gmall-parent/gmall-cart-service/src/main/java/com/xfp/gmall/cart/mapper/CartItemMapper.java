@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.cart.mapper;
+package com.xfp.gmall.cart.mapper;
 
 import com.xfp.gmall.cart.bean.OmsCartItem;
 import tk.mybatis.mapper.common.Mapper;
