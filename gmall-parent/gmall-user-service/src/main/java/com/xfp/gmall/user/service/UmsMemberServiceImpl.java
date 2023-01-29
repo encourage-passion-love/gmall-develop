@@ -2,11 +2,11 @@ package com.xfp.gmall.user.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
+import com.xfp.gmall.util.RedisUtil;
 import com.xfp.gmall.user.bean.UmsMember;
 import com.xfp.gmall.user.bean.UmsMemberReceiveAddress;
 import com.xfp.gmall.user.mapper.UmsMemberReceiveAddressMapper;
 import com.xfp.gmall.user.mapper.UserMapper;
-import com.xfp.gmall.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.Jedis;
