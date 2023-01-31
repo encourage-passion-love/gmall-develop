@@ -1,8 +1,8 @@
-package com.xfp.gmall.order.interceptors;
+package com.xfp.gmall.interceptors;
 
 import com.alibaba.fastjson.JSON;
-import com.xfp.gmall.order.annoations.LoginRequired;
-import com.xfp.gmall.order.util.HttpClientUtil;
+import com.xfp.gmall.annoations.LoginRequired;
+import com.xfp.gmall.util.HttpClientUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;

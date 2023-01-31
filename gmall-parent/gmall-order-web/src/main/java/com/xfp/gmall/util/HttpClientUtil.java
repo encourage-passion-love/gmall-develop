@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.util;
+package com.xfp.gmall.util;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;

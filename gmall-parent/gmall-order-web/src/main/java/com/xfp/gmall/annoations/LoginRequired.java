@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.annoations;
+package com.xfp.gmall.annoations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

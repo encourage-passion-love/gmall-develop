@@ -1,6 +1,6 @@
-package com.xfp.gmall.order.config;
+package com.xfp.gmall.config;
 
-import com.xfp.gmall.order.interceptors.HandlerInterceptorOrder;
+import com.xfp.gmall.interceptors.HandlerInterceptorOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

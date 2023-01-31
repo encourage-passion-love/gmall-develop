@@ -1,6 +1,6 @@
-package com.xfp.gmall.order.controller;
+package com.xfp.gmall.controller;
 
-import com.xfp.gmall.order.annoations.LoginRequired;
+import com.xfp.gmall.annoations.LoginRequired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +31,7 @@ public class OrderController {
         比对成功可以进行订单的提交,失败则不能进行订单的提交
          */
         //从缓存里面把购物车信息查询出来
+        //需要对价格进行验证(页面传递过来的和数据库实际价格)
         //将购物车信息进行清空
         //进行封装成订单项和订单详情项
         //进行写入到数据库
