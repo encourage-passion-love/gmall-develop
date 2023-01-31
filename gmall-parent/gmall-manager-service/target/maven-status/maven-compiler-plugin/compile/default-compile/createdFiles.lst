@@ -1,6 +1,5 @@
 com\xfp\gmall\manager\mapper\PmsProductInfoMapper.class
 com\xfp\gmall\manager\mapper\PmsSkuInfoMapper.class
-com\xfp\gmall\order\GMallManagerServiceApp.class
 com\xfp\gmall\manager\mapper\SpuMapper.class
 com\xfp\gmall\manager\mapper\PmsBaseAttrValueMapper.class
 com\xfp\gmall\manager\mapper\PmsSkuImageMapper.class

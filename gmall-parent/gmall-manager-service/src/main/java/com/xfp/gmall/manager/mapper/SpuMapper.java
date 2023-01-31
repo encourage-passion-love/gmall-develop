@@ -1,6 +1,6 @@
 package com.xfp.gmall.manager.mapper;
 
-import com.xfp.gmall.manager.bean.PmsProductInfo;
+import com.xfp.gmall.gmall.manager.bean.PmsProductInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

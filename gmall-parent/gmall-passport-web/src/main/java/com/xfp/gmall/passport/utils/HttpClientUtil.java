@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.passport.utils;
+package com.xfp.gmall.passport.utils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;

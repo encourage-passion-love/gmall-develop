@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.passport.service;
+package com.xfp.gmall.passport.service;
 
 import com.xfp.gmall.user.bean.UmsMember;
 import com.xfp.gmall.user.bean.UmsMemberReceiveAddress;

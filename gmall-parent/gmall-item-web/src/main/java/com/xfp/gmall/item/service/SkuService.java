@@ -1,4 +1,4 @@
-package com.xfp.gmall.order.item.service;
+package com.xfp.gmall.item.service;
 
 import com.xfp.gmall.manager.bean.PmsSkuInfo;
 

@@ -2,11 +2,11 @@ package com.xfp.gmall.search.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.xfp.gmall.manager.bean.PmsSearchParam;
-import com.xfp.gmall.manager.service.SkuService;
 import com.xfp.gmall.manager.bean.PmsSearchSkuInfo;
 import com.xfp.gmall.manager.bean.PmsSkuInfo;
 import com.xfp.gmall.manager.service.SkuSearchService;
+import com.xfp.gmall.manager.service.SkuService;
+import com.xfp.gmall.manager.bean.PmsSearchParam;
 import io.searchbox.client.JestClient;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;

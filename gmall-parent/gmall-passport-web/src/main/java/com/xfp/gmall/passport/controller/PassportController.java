@@ -1,10 +1,10 @@
-package com.xfp.gmall.order.passport.controller;
+package com.xfp.gmall.passport.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.xfp.gmall.order.passport.service.UserService;
-import com.xfp.gmall.order.passport.utils.HttpClientUtil;
-import com.xfp.gmall.user.bean.UmsMember;
+import com.xfp.gmall.passport.service.UserService;
+import com.xfp.gmall.passport.utils.HttpClientUtil;
 import com.xfp.gmall.order.utils.JwtUtil;
+import com.xfp.gmall.user.bean.UmsMember;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

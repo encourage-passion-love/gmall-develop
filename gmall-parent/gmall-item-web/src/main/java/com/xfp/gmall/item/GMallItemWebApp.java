@@ -1,11 +1,11 @@
-package com.xfp.gmall.order.passport;
+package com.xfp.gmall.item;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GmallPassportApp {
+public class GMallItemWebApp {
     public static void main(String[] args) {
-        SpringApplication.run(GmallPassportApp.class,args);
+        SpringApplication.run(GMallItemWebApp.class,args);
     }
 }

@@ -1,9 +1,9 @@
 package com.xfp.gmall.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.xfp.gmall.gmall.manager.bean.PmsProductInfo;
 import com.xfp.gmall.manager.service.SpuService;
 import com.xfp.gmall.manager.bean.PmsProductImage;
-import com.xfp.gmall.manager.bean.PmsProductInfo;
 import com.xfp.gmall.manager.bean.PmsProductSaleAttr;
 import org.csource.common.MyException;
 import org.csource.fastdfs.StorageClient;

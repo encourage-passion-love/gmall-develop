@@ -1,8 +1,8 @@
 package com.xfp.gmall.manager.service;
 
+import com.xfp.gmall.manager.bean.PmsBaseCatalog3;
 import com.xfp.gmall.manager.bean.PmsBaseCatalog1;
 import com.xfp.gmall.manager.bean.PmsBaseCatalog2;
-import com.xfp.gmall.manager.bean.PmsBaseCatalog3;
 
 import java.util.List;
 
