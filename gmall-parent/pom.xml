@@ -53,6 +53,7 @@
         <module>gmall-passport-web</module>
         <module>gmall-web-util</module>
         <module>gmall-order-web</module>
+        <module>gmall-payment</module>
     </modules>
     <dependencyManagement>
 
