@@ -1,7 +1,8 @@
 package com.xfp.gmall.manager.service;
 
-import com.xfp.gmall.gmall.manager.bean.PmsProductInfo;
+
 import com.xfp.gmall.manager.bean.PmsProductImage;
+import com.xfp.gmall.manager.bean.PmsProductInfo;
 import com.xfp.gmall.manager.bean.PmsProductSaleAttr;
 
 import java.util.List;
