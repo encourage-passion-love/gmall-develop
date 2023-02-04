@@ -51,8 +51,11 @@ public class ActiveMQConfig {
 
     @Bean
     public ActiveMQConnectionFactory activeMQConnectionFactory ( ){
-/*        if((url==null||url.equals(""))&&!brokerURL.equals("disabled")){
+        /*
+            if((url==null||url.equals(""))&&!brokerURL.equals("disabled")){
             url=brokerURL;
+            spring工厂里面有对activeMQ封装的实现
+            可以进行注入到spring的工厂里面进行使用activeMQ这些类
         }*/
         ActiveMQConnectionFactory activeMQConnectionFactory =
                 new ActiveMQConnectionFactory(  brokerURL);
