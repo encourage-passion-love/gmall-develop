@@ -1,7 +1,7 @@
 package com.xfp.gmall.search.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.xfp.gmall.gmall.manager.bean.*;
+import com.xfp.gmall.gmall.manager.*;
 import com.xfp.gmall.manager.bean.*;
 import com.xfp.gmall.manager.service.SkuService;
 import com.xfp.gmall.manager.service.SkuSearchService;
