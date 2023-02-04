@@ -1,11 +1,11 @@
 package com.xfp.gmall.manager.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.xfp.gmall.gmall.manager.bean.PmsProductInfo;
+import com.xfp.gmall.manager.bean.PmsProductInfo;
 import com.xfp.gmall.manager.bean.PmsProductImage;
 import com.xfp.gmall.manager.bean.PmsProductSaleAttr;
 import com.xfp.gmall.manager.bean.PmsProductSaleAttrValue;
-import com.xfp.gmall.gmall.manager.mapper.*;
+import com.xfp.gmall.manager.mapper.*;
 import com.xfp.gmall.manager.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 

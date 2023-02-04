@@ -7,7 +7,7 @@
 
 
     <select id="spuList" parameterType="string"
-            resultType="com.xfp.gmall.manager.bean.PmsProductInfo">
+            resultType="com.xfp.gmall.gmall.manager.bean.PmsProductInfo">
         select ppi.* from pms_product_info ppi
         where ppi.catalog3_id=#{catalog3Id}
     </select>

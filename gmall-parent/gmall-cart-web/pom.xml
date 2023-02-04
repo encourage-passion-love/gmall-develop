@@ -12,6 +12,15 @@
     <artifactId>gmall-cart-web</artifactId>
 
     <dependencies>
+
+        <!--阿里支付的SDK-->
+        <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
         <!--编解码jar包的加载-->
         <dependency>
             <groupId>commons-codec</groupId>

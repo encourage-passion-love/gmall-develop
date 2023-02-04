@@ -5,7 +5,7 @@
 <mapper namespace="com.xfp.gmall.manager.mapper.PmsProductInfoMapper">
 
 
-    <insert id="saveProductInfo" parameterType="com.xfp.gmall.manager.bean.PmsProductInfo"
+    <insert id="saveProductInfo" parameterType="com.xfp.gmall.gmall.manager.bean.PmsProductInfo"
     useGeneratedKeys="true"  keyProperty="id">
         insert into pms_product_info(product_name,description,catalog3_id)
         values(#{productName},#{description},#{catalog3Id})
